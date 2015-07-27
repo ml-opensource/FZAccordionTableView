@@ -19,8 +19,8 @@
 		015B94331B2E321F00C1E772 /* FZAccordionTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewTests.m; sourceTree = "<group>"; };
 		015B943C1B2E333800C1E772 /* FZAccordionTableViewSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableViewSimulator.h; sourceTree = "<group>"; };
 		015B943D1B2E333800C1E772 /* FZAccordionTableViewSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewSimulator.m; sourceTree = "<group>"; };
-		01AAAAC71B2E4EE8009D3AE3 /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FZAccordionTableView.h; path = ../../FZAccordionTableView/FZAccordionTableView.h; sourceTree = "<group>"; };
-		01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FZAccordionTableView.m; path = ../../FZAccordionTableView/FZAccordionTableView.m; sourceTree = "<group>"; };
+		01AAAAC71B2E4EE8009D3AE3 /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableView.h; sourceTree = "<group>"; };
+		01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableView.m; sourceTree = "<group>"; };
 		01AAAACD1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewDelegateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +79,7 @@
 				01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */,
 			);
 			name = FZAccordionTableView;
+			path = ../../FZAccordionTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
