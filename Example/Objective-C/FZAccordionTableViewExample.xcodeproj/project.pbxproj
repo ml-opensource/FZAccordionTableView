@@ -103,7 +103,7 @@
 				01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */,
 			);
 			name = FZAccordionTableView;
-			path = ../../FZAccordionTableView;
+			path = ../../../FZAccordionTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

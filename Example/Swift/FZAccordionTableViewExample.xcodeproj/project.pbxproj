@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		011F23081BC2CF76001769BF /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 011F23071BC2CF76001769BF /* FZAccordionTableView.m */; };
+		019D44281BC2B62900104042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D44271BC2B62900104042 /* AppDelegate.swift */; };
+		019D442A1BC2B62900104042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D44291BC2B62900104042 /* ViewController.swift */; };
+		019D442D1BC2B62900104042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019D442B1BC2B62900104042 /* Main.storyboard */; };
+		019D442F1BC2B62900104042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019D442E1BC2B62900104042 /* Assets.xcassets */; };
+		019D44321BC2B62900104042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019D44301BC2B62900104042 /* LaunchScreen.storyboard */; };
+		019D443A1BC2B85C00104042 /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019D44391BC2B85C00104042 /* AccordionHeaderView.xib */; };
+		019D44401BC2B8F700104042 /* AccordionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D443F1BC2B8F700104042 /* AccordionHeaderView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		011F23061BC2CF76001769BF /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableView.h; sourceTree = "<group>"; };
+		011F23071BC2CF76001769BF /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableView.m; sourceTree = "<group>"; };
+		019D44241BC2B62900104042 /* FZAccordionTableViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FZAccordionTableViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		019D44271BC2B62900104042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		019D44291BC2B62900104042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		019D442C1BC2B62900104042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		019D442E1BC2B62900104042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		019D44311BC2B62900104042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		019D44331BC2B62900104042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		019D44391BC2B85C00104042 /* AccordionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccordionHeaderView.xib; sourceTree = "<group>"; };
+		019D443B1BC2B87700104042 /* FZAccordionTableViewExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FZAccordionTableViewExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		019D443F1BC2B8F700104042 /* AccordionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionHeaderView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		019D44211BC2B62900104042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		011F23051BC2CF46001769BF /* FZAccordionTableView */ = {
+			isa = PBXGroup;
+			children = (
+				011F23061BC2CF76001769BF /* FZAccordionTableView.h */,
+				011F23071BC2CF76001769BF /* FZAccordionTableView.m */,
+			);
+			name = FZAccordionTableView;
+			path = ../../../FZAccordionTableView;
+			sourceTree = "<group>";
+		};
+		019D441B1BC2B62900104042 = {
+			isa = PBXGroup;
+			children = (
+				019D44261BC2B62900104042 /* FZAccordionTableViewExample */,
+				019D44251BC2B62900104042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		019D44251BC2B62900104042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				019D44241BC2B62900104042 /* FZAccordionTableViewExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		019D44261BC2B62900104042 /* FZAccordionTableViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				019D442B1BC2B62900104042 /* Main.storyboard */,
+				019D44291BC2B62900104042 /* ViewController.swift */,
+				019D443F1BC2B8F700104042 /* AccordionHeaderView.swift */,
+				019D44391BC2B85C00104042 /* AccordionHeaderView.xib */,
+				019D443B1BC2B87700104042 /* FZAccordionTableViewExample-Bridging-Header.h */,
+				011F23051BC2CF46001769BF /* FZAccordionTableView */,
+				019D44411BC2CC0F00104042 /* Other */,
+			);
+			path = FZAccordionTableViewExample;
+			sourceTree = "<group>";
+		};
+		019D44411BC2CC0F00104042 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				019D44271BC2B62900104042 /* AppDelegate.swift */,
+				019D442E1BC2B62900104042 /* Assets.xcassets */,
+				019D44301BC2B62900104042 /* LaunchScreen.storyboard */,
+				019D44331BC2B62900104042 /* Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		019D44231BC2B62900104042 /* FZAccordionTableViewExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 019D44361BC2B62900104042 /* Build configuration list for PBXNativeTarget "FZAccordionTableViewExample" */;
+			buildPhases = (
+				019D44201BC2B62900104042 /* Sources */,
+				019D44211BC2B62900104042 /* Frameworks */,
+				019D44221BC2B62900104042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FZAccordionTableViewExample;
+			productName = FZAccordionTableViewExample;
+			productReference = 019D44241BC2B62900104042 /* FZAccordionTableViewExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		019D441C1BC2B62900104042 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Fuzz;
+				TargetAttributes = {
+					019D44231BC2B62900104042 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 019D441F1BC2B62900104042 /* Build configuration list for PBXProject "FZAccordionTableViewExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 019D441B1BC2B62900104042;
+			productRefGroup = 019D44251BC2B62900104042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				019D44231BC2B62900104042 /* FZAccordionTableViewExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		019D44221BC2B62900104042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019D44321BC2B62900104042 /* LaunchScreen.storyboard in Resources */,
+				019D442F1BC2B62900104042 /* Assets.xcassets in Resources */,
+				019D443A1BC2B85C00104042 /* AccordionHeaderView.xib in Resources */,
+				019D442D1BC2B62900104042 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		019D44201BC2B62900104042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019D442A1BC2B62900104042 /* ViewController.swift in Sources */,
+				019D44401BC2B8F700104042 /* AccordionHeaderView.swift in Sources */,
+				011F23081BC2CF76001769BF /* FZAccordionTableView.m in Sources */,
+				019D44281BC2B62900104042 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		019D442B1BC2B62900104042 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				019D442C1BC2B62900104042 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		019D44301BC2B62900104042 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				019D44311BC2B62900104042 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		019D44341BC2B62900104042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		019D44351BC2B62900104042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		019D44371BC2B62900104042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = FZAccordionTableViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fuzz.FZAccordionTableViewExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FZAccordionTableViewExample/FZAccordionTableViewExample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		019D44381BC2B62900104042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = FZAccordionTableViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fuzz.FZAccordionTableViewExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FZAccordionTableViewExample/FZAccordionTableViewExample-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		019D441F1BC2B62900104042 /* Build configuration list for PBXProject "FZAccordionTableViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019D44341BC2B62900104042 /* Debug */,
+				019D44351BC2B62900104042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		019D44361BC2B62900104042 /* Build configuration list for PBXNativeTarget "FZAccordionTableViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019D44371BC2B62900104042 /* Debug */,
+				019D44381BC2B62900104042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 019D441C1BC2B62900104042 /* Project object */;
+}
