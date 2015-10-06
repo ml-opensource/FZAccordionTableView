@@ -50,6 +50,9 @@ The module is made to be very easy to use and no modifications are necessary to 
 2. Subclass your `UITableView` with `FZAccordionTableView`
 3. Subclass your `UITableViewHeaderFooterView` with `FZAccordionTableViewHeaderView`
 
+## Swift Support
+FZAccordionTableView works with Swift! Check out the Swift Example in the "Example" folder to see FZAccordionTableView implemented in a Swift project.
+
 ## Example
 ![](Images/First_Example.gif) ![](Images/Second_Example.gif)
 
