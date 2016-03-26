@@ -1,0 +1,341 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01D1F3351B24D94A007B97BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3341B24D94A007B97BD /* main.m */; };
+		01D1F3381B24D94A007B97BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3371B24D94A007B97BD /* AppDelegate.m */; };
+		01D1F33B1B24D94A007B97BD /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F33A1B24D94A007B97BD /* FirstViewController.m */; };
+		01D1F33E1B24D94A007B97BD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F33D1B24D94A007B97BD /* SecondViewController.m */; };
+		01D1F3411B24D94A007B97BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F33F1B24D94A007B97BD /* Main.storyboard */; };
+		01D1F3431B24D94A007B97BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3421B24D94A007B97BD /* Images.xcassets */; };
+		01D1F3461B24D94A007B97BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3441B24D94A007B97BD /* LaunchScreen.xib */; };
+		01D1F35E1B24D9B2007B97BD /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */; };
+		01D1F3661B24DD61007B97BD /* AccordionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */; };
+		01D1F3681B24DD86007B97BD /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01D1F32F1B24D94A007B97BD /* FZAccordionTableViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FZAccordionTableViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01D1F3331B24D94A007B97BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01D1F3341B24D94A007B97BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01D1F3361B24D94A007B97BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01D1F3371B24D94A007B97BD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01D1F3391B24D94A007B97BD /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		01D1F33A1B24D94A007B97BD /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		01D1F33C1B24D94A007B97BD /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		01D1F33D1B24D94A007B97BD /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		01D1F3401B24D94A007B97BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		01D1F3421B24D94A007B97BD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		01D1F3451B24D94A007B97BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		01D1F35C1B24D9B2007B97BD /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FZAccordionTableView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FZAccordionTableView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		01D1F3641B24DD61007B97BD /* AccordionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccordionHeaderView.h; sourceTree = "<group>"; };
+		01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccordionHeaderView.m; sourceTree = "<group>"; };
+		01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccordionHeaderView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01D1F32C1B24D94A007B97BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01D1F3261B24D949007B97BD = {
+			isa = PBXGroup;
+			children = (
+				01D1F3311B24D94A007B97BD /* FZAccordionTableViewExample */,
+				01D1F3301B24D94A007B97BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01D1F3301B24D94A007B97BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01D1F32F1B24D94A007B97BD /* FZAccordionTableViewExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01D1F3311B24D94A007B97BD /* FZAccordionTableViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				01D1F3361B24D94A007B97BD /* AppDelegate.h */,
+				01D1F3371B24D94A007B97BD /* AppDelegate.m */,
+				01D1F3391B24D94A007B97BD /* FirstViewController.h */,
+				01D1F33A1B24D94A007B97BD /* FirstViewController.m */,
+				01D1F33C1B24D94A007B97BD /* SecondViewController.h */,
+				01D1F33D1B24D94A007B97BD /* SecondViewController.m */,
+				01D1F3641B24DD61007B97BD /* AccordionHeaderView.h */,
+				01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */,
+				01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */,
+				01D1F33F1B24D94A007B97BD /* Main.storyboard */,
+				01D1F3421B24D94A007B97BD /* Images.xcassets */,
+				01D1F3441B24D94A007B97BD /* LaunchScreen.xib */,
+				01D1F35B1B24D991007B97BD /* FZAccordionTableView */,
+				01D1F3321B24D94A007B97BD /* Supporting Files */,
+			);
+			path = FZAccordionTableViewExample;
+			sourceTree = "<group>";
+		};
+		01D1F3321B24D94A007B97BD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				01D1F3331B24D94A007B97BD /* Info.plist */,
+				01D1F3341B24D94A007B97BD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01D1F35B1B24D991007B97BD /* FZAccordionTableView */ = {
+			isa = PBXGroup;
+			children = (
+				01D1F35C1B24D9B2007B97BD /* FZAccordionTableView.h */,
+				01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */,
+			);
+			name = FZAccordionTableView;
+			path = ../../../FZAccordionTableView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01D1F32E1B24D94A007B97BD /* FZAccordionTableViewExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01D1F3551B24D94A007B97BD /* Build configuration list for PBXNativeTarget "FZAccordionTableViewExample" */;
+			buildPhases = (
+				01D1F32B1B24D94A007B97BD /* Sources */,
+				01D1F32C1B24D94A007B97BD /* Frameworks */,
+				01D1F32D1B24D94A007B97BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FZAccordionTableViewExample;
+			productName = FZAccordionTableViewExample;
+			productReference = 01D1F32F1B24D94A007B97BD /* FZAccordionTableViewExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01D1F3271B24D949007B97BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Fuzz;
+				TargetAttributes = {
+					01D1F32E1B24D94A007B97BD = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 01D1F32A1B24D949007B97BD /* Build configuration list for PBXProject "FZAccordionTableViewExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01D1F3261B24D949007B97BD;
+			productRefGroup = 01D1F3301B24D94A007B97BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01D1F32E1B24D94A007B97BD /* FZAccordionTableViewExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01D1F32D1B24D94A007B97BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01D1F3411B24D94A007B97BD /* Main.storyboard in Resources */,
+				01D1F3461B24D94A007B97BD /* LaunchScreen.xib in Resources */,
+				01D1F3681B24DD86007B97BD /* AccordionHeaderView.xib in Resources */,
+				01D1F3431B24D94A007B97BD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01D1F32B1B24D94A007B97BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01D1F35E1B24D9B2007B97BD /* FZAccordionTableView.m in Sources */,
+				01D1F33E1B24D94A007B97BD /* SecondViewController.m in Sources */,
+				01D1F3661B24DD61007B97BD /* AccordionHeaderView.m in Sources */,
+				01D1F3381B24D94A007B97BD /* AppDelegate.m in Sources */,
+				01D1F33B1B24D94A007B97BD /* FirstViewController.m in Sources */,
+				01D1F3351B24D94A007B97BD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		01D1F33F1B24D94A007B97BD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01D1F3401B24D94A007B97BD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		01D1F3441B24D94A007B97BD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01D1F3451B24D94A007B97BD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		01D1F3531B24D94A007B97BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		01D1F3541B24D94A007B97BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01D1F3561B24D94A007B97BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FZAccordionTableViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		01D1F3571B24D94A007B97BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FZAccordionTableViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01D1F32A1B24D949007B97BD /* Build configuration list for PBXProject "FZAccordionTableViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01D1F3531B24D94A007B97BD /* Debug */,
+				01D1F3541B24D94A007B97BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01D1F3551B24D94A007B97BD /* Build configuration list for PBXNativeTarget "FZAccordionTableViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01D1F3561B24D94A007B97BD /* Debug */,
+				01D1F3571B24D94A007B97BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01D1F3271B24D949007B97BD /* Project object */;
+}
