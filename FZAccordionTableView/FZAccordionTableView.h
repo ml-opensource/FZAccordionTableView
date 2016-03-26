@@ -70,14 +70,14 @@
  @desc  Defines which sections should be open the first time the
         table is shown.
  */
-@property (strong, nonatomic) NSSet *initialOpenSections;
+@property (strong, nonatomic, nullable) NSSet <NSNumber *> *initialOpenSections;
 
 /*!
  @desc  Defines which sections will always be open.
         The headers of these sections will not call the
         FZAccordionTableViewDelegate methods.
  */
-@property (strong, nonatomic) NSSet *sectionsAlwaysOpen;
+@property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen;
 
 /*!
  @desc  Enables the fading of cells for the last two rows of the
@@ -110,10 +110,10 @@
 
 @optional
 
-- (void)tableView:(FZAccordionTableView *)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 
-- (void)tableView:(FZAccordionTableView *)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 
 @end

@@ -71,19 +71,19 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController : FZAccordionTableViewDelegate {
 
-    func tableView(tableView: FZAccordionTableView!, willOpenSection section: Int, withHeader header: UITableViewHeaderFooterView!) {
+    func tableView(tableView: FZAccordionTableView, willOpenSection section: Int, withHeader header: UITableViewHeaderFooterView) {
         
     }
     
-    func tableView(tableView: FZAccordionTableView!, didOpenSection section: Int, withHeader header: UITableViewHeaderFooterView!) {
+    func tableView(tableView: FZAccordionTableView, didOpenSection section: Int, withHeader header: UITableViewHeaderFooterView) {
         
     }
     
-    func tableView(tableView: FZAccordionTableView!, willCloseSection section: Int, withHeader header: UITableViewHeaderFooterView!) {
+    func tableView(tableView: FZAccordionTableView, willCloseSection section: Int, withHeader header: UITableViewHeaderFooterView) {
         
     }
     
-    func tableView(tableView: FZAccordionTableView!, didCloseSection section: Int, withHeader header: UITableViewHeaderFooterView!) {
+    func tableView(tableView: FZAccordionTableView, didCloseSection section: Int, withHeader header: UITableViewHeaderFooterView) {
         
     }
 }
