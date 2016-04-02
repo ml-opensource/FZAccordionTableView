@@ -14,6 +14,7 @@ static const NSInteger kAccordionSimulatorNumberOfRows = 5;
 
 @interface FZAccordionTableViewSimulator : NSObject
 
+@property (strong, nonatomic, readonly) NSMutableArray <NSNumber *> *sections;
 @property (strong, nonatomic, readonly) FZAccordionTableView *tableView;
 @property (weak, nonatomic) id<FZAccordionTableViewDelegate> delegate;
 

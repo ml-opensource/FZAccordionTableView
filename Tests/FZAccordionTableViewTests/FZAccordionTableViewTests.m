@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "FZAccordionTableViewSimulator.h"
+#import "FZAccordionTableView+Internals.h"
 
 @interface FZAccordionTableViewTests : XCTestCase
 
@@ -147,6 +148,53 @@
         [self.tableViewSimulator.tableView toggleSection:i];
         XCTAssert([self.tableViewSimulator.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
     }
+}
+
+#pragma mark - Deletion Tests -
+
+- (void)testDeletingRowWithOpenSection {
+    
+    NSInteger section = 0;
+    
+    [self.tableViewSimulator.tableView toggleSection:section];
+    XCTAssert([self.tableViewSimulator.tableView isSectionOpen:section], @"Section %d should be open.", (int)section);
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] == [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"The number of rows in section %d of our data source should match those of the FZAccordionTableView 'numOfRowsForSection'", (int)section);
+    
+    NSInteger numberOfRows = [self.tableViewSimulator.sections[section] integerValue];
+    self.tableViewSimulator.sections[section] = @(numberOfRows-1);
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] != [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"Without calling 'deleteForRows' there should be a difference between data source and what the tableView says.");
+    
+    // Calling 'deleteRowsAtIndexPaths' propogates the necessary methods/changes, but throws an exception that we can just ignore.
+    @try {
+        [self.tableViewSimulator.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:numberOfRows-1 inSection:section]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    @catch(NSException *exception) { }
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] == [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"The number of rows in section %d of our data source should match those of the FZAccordionTableView 'numOfRowsForSection' after deletion.", (int)section);
+}
+
+- (void)testDeletingRowWithClosedSection {
+    
+    NSInteger section = 0;
+    
+    XCTAssert(![self.tableViewSimulator.tableView isSectionOpen:section], @"Section %d should be closed.", (int)section);
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] == [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"The number of rows in section %d of our data source should match those of the FZAccordionTableView 'numOfRowsForSection'", (int)section);
+    
+    NSInteger numberOfRows = [self.tableViewSimulator.sections[section] integerValue];
+    self.tableViewSimulator.sections[section] = @(numberOfRows-1);
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] != [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"Without calling 'deleteForRows' there should be a difference between data source and what the tableView says.");
+    
+    // Calling 'deleteRowsAtIndexPaths' propogates the necessary methods/changes, but throws an exception that we can just ignore.
+    @try {
+        [self.tableViewSimulator.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:numberOfRows-1 inSection:section]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    @catch(NSException *exception) { }
+    
+    XCTAssert([self.tableViewSimulator.sections[section] integerValue] == [self.tableViewSimulator.tableView.numOfRowsForSection[@(section)] integerValue], @"The number of rows in section %d of our data source should match those of the FZAccordionTableView 'numOfRowsForSection' after deletion.", (int)section);
 }
 
 @end

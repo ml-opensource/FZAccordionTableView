@@ -24,9 +24,17 @@ static NSString *const kTableViewHeaderViewReuseIdentifier = @"TableViewHeaderVi
 - (instancetype)init {
     if (self = [super init]) {
         _tableView = [FZAccordionTableView new];
+        _sections = [NSMutableArray new];
+        [self setupData];
         [self setupTableView];
     }
     return self;
+}
+
+- (void)setupData {
+    for (NSInteger i = 0; i < kAccordionSimulatorNumberOfSections; i++) {
+        [self.sections addObject:@(kAccordionSimulatorNumberOfRows)];
+    }
 }
 
 - (void)setupTableView {
@@ -40,11 +48,11 @@ static NSString *const kTableViewHeaderViewReuseIdentifier = @"TableViewHeaderVi
 #pragma mark - <UITableViewDataSource> / <UITableViewDelegate> -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kAccordionSimulatorNumberOfSections;
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return kAccordionSimulatorNumberOfRows;
+    return [self.sections[section] integerValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
