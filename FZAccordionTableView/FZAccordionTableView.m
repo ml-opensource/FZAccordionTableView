@@ -48,8 +48,21 @@
 
 @implementation FZAccordionTableViewHeaderView
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        [self singleInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self singleInit];
+    }
+    return self;
+}
+
+- (void)singleInit {
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchedHeaderView:)]];
 }
 

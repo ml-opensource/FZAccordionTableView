@@ -41,6 +41,7 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     self.tableView.allowMultipleSectionsOpen = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
+//    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
 }
 
