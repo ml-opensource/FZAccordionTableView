@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,7 +15,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="529-R1-yiG">
-                            <rect key="frame" x="266" y="10" width="67" height="24"/>
+                            <rect key="frame" x="264.5" y="10" width="70.5" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -27,6 +27,12 @@
                                 <constraint firstAttribute="height" constant="1" id="Dgq-16-x6W"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbo-4f-nBI">
+                            <rect key="frame" x="545" y="7" width="45" height="30"/>
+                            <state key="normal" title="Delete">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -35,6 +41,8 @@
                         <constraint firstAttribute="centerX" secondItem="529-R1-yiG" secondAttribute="centerX" constant="0.5" id="Ez4-cT-XW6"/>
                         <constraint firstItem="Etg-G3-Srz" firstAttribute="leading" secondItem="Y9z-3k-J3L" secondAttribute="leading" id="diQ-O1-FHr"/>
                         <constraint firstAttribute="bottom" secondItem="Etg-G3-Srz" secondAttribute="bottom" id="gpa-Wo-lfq"/>
+                        <constraint firstItem="Wbo-4f-nBI" firstAttribute="centerY" secondItem="Y9z-3k-J3L" secondAttribute="centerY" id="iaE-QE-1Hx"/>
+                        <constraint firstAttribute="trailing" secondItem="Wbo-4f-nBI" secondAttribute="trailing" constant="10" id="sCX-4g-9Fj"/>
                     </constraints>
                 </view>
             </subviews>
@@ -46,6 +54,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="deleteButton" destination="Wbo-4f-nBI" id="kmg-4A-PJh"/>
+            </connections>
         </view>
     </objects>
 </document>
