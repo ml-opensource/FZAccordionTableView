@@ -8,6 +8,23 @@
 
 #import "AccordionHeaderView.h"
 
+@interface AccordionHeaderView()
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
+@end
+
 @implementation AccordionHeaderView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.deleteButton addTarget:self action:@selector(pressedDeleteButton) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)pressedDeleteButton {
+    if (self.pressedDeleteButtonBlock) {
+        self.pressedDeleteButtonBlock(self);
+    }
+}
 
 @end

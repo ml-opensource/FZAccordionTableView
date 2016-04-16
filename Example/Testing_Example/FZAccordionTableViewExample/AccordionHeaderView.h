@@ -13,6 +13,6 @@ static NSString *const kAccordionHeaderViewReuseIdentifier = @"AccordionHeaderVi
 
 @interface AccordionHeaderView : FZAccordionTableViewHeaderView
 
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (copy, nonatomic) void (^pressedDeleteButtonBlock)(AccordionHeaderView *view);
 
 @end

@@ -45,14 +45,6 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
 }
 
-#pragma mark - Action -
-
-- (IBAction)pressedDeleteButton:(UIButton *)sender {
-    // Don't use tag in real code
-    [self.sections removeObjectAtIndex:sender.tag];
-    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 #pragma mark - Class Overrides -
 
 - (BOOL)prefersStatusBarHidden {
@@ -94,8 +86,15 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     AccordionHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kAccordionHeaderViewReuseIdentifier];
-    headerView.deleteButton.tag = section; // This is bad code, but works for testing!
-    [headerView.deleteButton addTarget:self action:@selector(pressedDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
+    __weak typeof(self) weakSelf = self;
+    headerView.pressedDeleteButtonBlock = ^(AccordionHeaderView *headerView) {
+        typeof(self) strongSelf = weakSelf;
+        if (strongSelf) {
+            NSInteger section = [strongSelf.tableView sectionForHeaderView:headerView];
+            [strongSelf.sections removeObjectAtIndex:section];
+            [strongSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    };
     return headerView;
 }
 

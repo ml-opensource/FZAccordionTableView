@@ -33,7 +33,7 @@
 /*!
  @desc  The section which this header view is part of.
  */
-@property (nonatomic, readonly) NSInteger section;
+@property (nonatomic, readonly) NSInteger section DEPRECATED_MSG_ATTRIBUTE("Use sectionForHeaderView: instead.");
 
 @end
 
@@ -103,6 +103,15 @@
  @param section The section whose header should be 'tapped.'
  */
 - (void)toggleSection:(NSInteger)section;
+
+/*!
+ @desc  Finds the section of a header view.
+ 
+ @param headerView The header view whose section you want to find.
+ 
+ @returns The section of the header view.
+ */
+- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView * _Nonnull)headerView;
 
 @end
 

@@ -37,13 +37,13 @@
 
 @interface FZAccordionTableViewHeaderView()
 
-@property (nonatomic) NSInteger section;
+//@property (nonatomic) NSInteger section;
 @property (nonatomic, weak) id <FZAccordionTableViewHeaderViewDelegate> delegate;
 
 @end
 
 @protocol FZAccordionTableViewHeaderViewDelegate <NSObject>
-- (void)headerView:(FZAccordionTableViewHeaderView *)sectionHeaderView didSelectHeaderInSection:(NSInteger)section;
+- (void)tappedHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView;
 @end
 
 @implementation FZAccordionTableViewHeaderView
@@ -67,10 +67,7 @@
 }
 
 - (void)touchedHeaderView:(UITapGestureRecognizer *)recognizer {
-    
-    
-    
-    [self.delegate headerView:self didSelectHeaderInSection:self.section];
+    [self.delegate tappedHeaderView:self];
 }
 
 @end
@@ -161,8 +158,34 @@
 - (void)toggleSection:(NSInteger)section {
     
     FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
+    [self tappedHeaderView:headerView];
+}
+
+- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
     
-    [self headerView:headerView didSelectHeaderInSection:section];
+    NSInteger section = NSNotFound;
+    NSInteger minSection = 0;
+    NSInteger maxSection = self.numberOfSections;
+    
+    CGRect headerViewFrame = headerView.frame;
+    CGRect compareHeaderViewFrame;
+    
+    while (minSection <= maxSection) {
+        NSInteger middleSection = (minSection+maxSection)/2;
+        compareHeaderViewFrame = [self rectForHeaderInSection:middleSection];
+        if (CGRectEqualToRect(headerViewFrame, compareHeaderViewFrame)) {
+            section = middleSection;
+            break;
+        }
+        else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
+            minSection = middleSection+1;
+        }
+        else {
+            maxSection = middleSection-1;
+        }
+    }
+    
+    return section;
 }
 
 #pragma mark - UITableView Overrides -
@@ -245,40 +268,10 @@
 
 #pragma mark - FZAccordionTableViewHeaderViewDelegate -
 
-
-
-- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
+- (void)tappedHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
+    NSParameterAssert(sectionHeaderView);
     
-    NSInteger section = NSNotFound;
-    NSInteger min = 0;
-    NSInteger max = self.numberOfSections;
-    
-    CGRect headerViewFrame = headerView.frame;
-    CGRect compareHeaderViewFrame;
-    
-    while (min <= max) {
-        NSInteger mid = (min+max)/2;
-        compareHeaderViewFrame = [self rectForHeaderInSection:mid];
-        if (CGRectEqualToRect(headerViewFrame, compareHeaderViewFrame)) {
-            section = mid;
-            break;
-        }
-        else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
-            min = mid+1;
-        }
-        else {
-            max = mid-1;
-        }
-    }
-
-    return section;
-}
-
-
-
-- (void)headerView:(FZAccordionTableViewHeaderView *)sectionHeaderView didSelectHeaderInSection:(NSInteger)section {
-    
-    section = [self sectionForHeaderView:sectionHeaderView];
+    NSInteger section = [self sectionForHeaderView:sectionHeaderView];
     
     // Do not interact with sections that are always opened
     if ([self isAlwaysOpenedSection:section]) {
@@ -445,7 +438,6 @@
     if ([self.subclassDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
         headerView = (FZAccordionTableViewHeaderView *)[self.subclassDelegate tableView:tableView viewForHeaderInSection:section];
         if ([headerView isKindOfClass:[FZAccordionTableViewHeaderView class]]) {
-            headerView.section = section;
             headerView.delegate = self;
         }
     }
