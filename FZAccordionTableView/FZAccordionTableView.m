@@ -67,6 +67,9 @@
 }
 
 - (void)touchedHeaderView:(UITapGestureRecognizer *)recognizer {
+    
+    
+    
     [self.delegate headerView:self didSelectHeaderInSection:self.section];
 }
 
@@ -162,7 +165,7 @@
     [self headerView:headerView didSelectHeaderInSection:section];
 }
 
-#pragma mark - Handle message forwarding -
+#pragma mark - UITableView Overrides -
 
 - (void)setDelegate:(id<UITableViewDelegate, FZAccordionTableViewDelegate>)delegate {
     self.subclassDelegate = delegate;
@@ -173,6 +176,35 @@
     self.subclassDataSource = dataSource;
     super.dataSource = self;
 }
+
+- (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+    
+    // Loop:
+    // [self headerViewForSection:section];
+    // stop when its past the possible table view bounds.
+    // update each of the sections by 1.
+    
+    
+    // You can also utilize: viewForHeaderInSection
+    // Save the lowest possible section that was called for viewForHeaderInSection???
+    //
+//    [sections enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//    }];
+//    
+//    for (int i = sections.firstIndex; i < self.numberOfSections; i++) {
+//        FZAccordionTableViewHeaderView *headerView = [self tableView:self viewForHeaderInSection:i];
+//        headerView.section--;
+//    }
+    
+    [sections enumerateIndexesUsingBlock:^(NSUInteger index, BOOL * _Nonnull stop) {
+        self.numOfRowsForSection[@(index)] = nil;
+        [self.openedSections removeObject:@(index)];
+    }];
+    [super deleteSections:sections withRowAnimation:animation];
+}
+
+#pragma mark - Forwarding handling -
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     if ([self.subclassDataSource respondsToSelector:aSelector]) {
@@ -213,7 +245,40 @@
 
 #pragma mark - FZAccordionTableViewHeaderViewDelegate -
 
+
+
+- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
+    
+    NSInteger section = NSNotFound;
+    NSInteger min = 0;
+    NSInteger max = self.numberOfSections;
+    
+    CGRect headerViewFrame = headerView.frame;
+    CGRect compareHeaderViewFrame;
+    
+    while (min <= max) {
+        NSInteger mid = (min+max)/2;
+        compareHeaderViewFrame = [self rectForHeaderInSection:mid];
+        if (CGRectEqualToRect(headerViewFrame, compareHeaderViewFrame)) {
+            section = mid;
+            break;
+        }
+        else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
+            min = mid+1;
+        }
+        else {
+            max = mid-1;
+        }
+    }
+
+    return section;
+}
+
+
+
 - (void)headerView:(FZAccordionTableViewHeaderView *)sectionHeaderView didSelectHeaderInSection:(NSInteger)section {
+    
+    section = [self sectionForHeaderView:sectionHeaderView];
     
     // Do not interact with sections that are always opened
     if ([self isAlwaysOpenedSection:section]) {

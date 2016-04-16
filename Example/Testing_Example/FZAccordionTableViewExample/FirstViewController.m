@@ -32,7 +32,7 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 
 - (void)setupData {
     self.sections = [NSMutableArray new];
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 100; i++) {
         [self.sections addObject:@(arc4random_uniform(10))];
     }
 }
