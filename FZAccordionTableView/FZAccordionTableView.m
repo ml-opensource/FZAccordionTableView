@@ -30,6 +30,24 @@
 #import <objc/runtime.h>
 
 #pragma mark -
+#pragma mark - FZAccordionTableViewSection
+#pragma mark -
+
+@interface FZAccordionTableViewSection : NSObject
+@property (nonatomic, getter=isOpen) BOOL open;
+@property (nonatomic) NSInteger numberOfRows;
+@end
+
+@implementation FZAccordionTableViewSection
+- (instancetype)initWithNumberOfRows:(NSInteger)numberOfRows {
+    if (self = [super init]) {
+        _numberOfRows = numberOfRows;
+    }
+    return self;
+}
+@end
+
+#pragma mark -
 #pragma mark - FZAccordionTableViewHeaderView
 #pragma mark -
 
@@ -81,8 +99,9 @@
 @property id<UITableViewDelegate, FZAccordionTableViewDelegate> subclassDelegate;
 @property id<UITableViewDataSource> subclassDataSource;
 
-@property (strong, nonatomic) NSMutableSet *openedSections;
-@property (strong, nonatomic) NSMutableDictionary *numOfRowsForSection;
+//@property (strong, nonatomic) NSMutableSet *openedSections;
+//@property (strong, nonatomic) NSMutableDictionary *numOfRowsForSection;
+@property (strong, nonatomic) NSMutableArray <FZAccordionTableViewSection *> *sections; // <FZAccordionTableViewSection *>
 
 @end
 
@@ -119,8 +138,9 @@
 }
 
 - (void)initializeVars {
-    _openedSections = [[NSMutableSet alloc] init];
-    _numOfRowsForSection = [NSMutableDictionary dictionary];
+//    _openedSections = [[NSMutableSet alloc] init];
+//    _numOfRowsForSection = [NSMutab
+    _sections = [NSMutableArray new];
     _allowMultipleSectionsOpen = NO;
     _enableAnimationFix = NO;
     _keepOneSectionOpen = NO;
@@ -129,24 +149,24 @@
 #pragma mark - Helper methods -
 
 - (BOOL)isSectionOpen:(NSInteger)section {
-    return [self.openedSections containsObject:@(section)];
+    return [self.sections[section] isOpen];
 }
 
 - (BOOL)isAlwaysOpenedSection:(NSInteger)section {
     return [self.sectionsAlwaysOpen containsObject:@(section)];
 }
 
-- (void)addOpenedSection:(NSInteger)section {
-    [self.openedSections addObject:@(section)];
+- (void)addOpenedSection:(NSInteger)section { // KRIS TODO: Rename this to markSectionOpen
+    [self.sections[section] setOpen:YES];
 }
 
 - (void)removeOpenedSection:(NSInteger)section {
-    [self.openedSections removeObject:@(section)];
+    [self.sections[section] setOpen:NO];
 }
 
 - (NSArray *)getIndexPathsForSection:(NSInteger)section {
     
-    NSInteger numOfRows =  [self.numOfRowsForSection[@(section)] integerValue];
+    NSInteger numOfRows =  [self.sections[section] numberOfRows];
     NSMutableArray *indexPaths = [NSMutableArray array];
     for (int row = 0; row < numOfRows; row++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];
@@ -202,27 +222,11 @@
 
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
     
-    // Loop:
-    // [self headerViewForSection:section];
-    // stop when its past the possible table view bounds.
-    // update each of the sections by 1.
-    
-    
-    // You can also utilize: viewForHeaderInSection
-    // Save the lowest possible section that was called for viewForHeaderInSection???
-    //
-//    [sections enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//    }];
-//    
-//    for (int i = sections.firstIndex; i < self.numberOfSections; i++) {
-//        FZAccordionTableViewHeaderView *headerView = [self tableView:self viewForHeaderInSection:i];
-//        headerView.section--;
-//    }
-    
-    [sections enumerateIndexesUsingBlock:^(NSUInteger index, BOOL * _Nonnull stop) {
-        self.numOfRowsForSection[@(index)] = nil;
-        [self.openedSections removeObject:@(index)];
+    [sections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * _Nonnull stop) {
+        [self.sections removeObjectAtIndex:section];
+        // KRIS TODO: If the removed section is one that needs ot be oepned, we need to open the next section.
+        // OR Refactor sections open to just be a delegate call "canOpen Section
+//        [self.openedSections removeObject:@(section)];
     }];
     [super deleteSections:sections withRowAnimation:animation];
 }
@@ -249,21 +253,21 @@
 - (void)setSectionsAlwaysOpen:(NSSet *)alwaysOpenedSections {
     _sectionsAlwaysOpen = alwaysOpenedSections;
     
-    if (_sectionsAlwaysOpen != nil) {
-        for (NSNumber *alwaysOpenedSection in _sectionsAlwaysOpen) {
-            [self addOpenedSection:alwaysOpenedSection.integerValue];
-        }
-    }
+//    if (_sectionsAlwaysOpen != nil) {
+//        for (NSNumber *alwaysOpenedSection in _sectionsAlwaysOpen) {
+//            [self addOpenedSection:alwaysOpenedSection.integerValue];
+//        }
+//    }
 }
 
 - (void)setInitialOpenSections:(NSSet *)initialOpenedSections {
     _initialOpenSections = initialOpenedSections;
     
-    if (_initialOpenSections != nil) {
-        for (NSNumber *section in _initialOpenSections) {
-            [self addOpenedSection:section.integerValue];
-        }
-    }
+//    if (_initialOpenSections != nil) {
+//        for (NSNumber *section in _initialOpenSections) {
+//            [self addOpenedSection:section.integerValue];
+//        }
+//    }
 }
 
 #pragma mark - FZAccordionTableViewHeaderViewDelegate -
@@ -280,13 +284,19 @@
     
     // Keep at least one section open
     if (self.keepOneSectionOpen) {
-        NSInteger countOfOpenSections = self.openedSections.count;
+        NSInteger countOfOpenSections = 0;
         
-        if (self.sectionsAlwaysOpen.count > 0) { // Subtract 'sectionsAlwaysOpen' from 'openedSections'
-            NSMutableSet *openedSectionsCopy = [self.openedSections mutableCopy];
-            [openedSectionsCopy minusSet:self.sectionsAlwaysOpen];
-            countOfOpenSections = openedSectionsCopy.count;
+        for (NSInteger i = 0; i < self.numberOfSections; i++) {
+            if ([self.sections[i] isOpen]) {
+                countOfOpenSections++;
+            }
         }
+        
+//        if (self.sectionsAlwaysOpen.count > 0) { // Subtract 'sectionsAlwaysOpen' from 'openedSections'
+//            NSMutableSet *openedSectionsCopy = [self.openedSections mutableCopy];
+//            [openedSectionsCopy minusSet:self.sectionsAlwaysOpen];
+//            countOfOpenSections = openedSectionsCopy.count;
+//        }
         
         if (countOfOpenSections == 1 && [self isSectionOpen:section]) {
             return;
@@ -323,20 +333,23 @@
     
     UITableViewRowAnimation insertAnimation = UITableViewRowAnimationTop;
     if (!self.allowMultipleSectionsOpen) {
-        for (NSNumber *openSection in self.openedSections) {
-            if (openSection.integerValue < section) {
+        // If any section is open beneath the one we are trying to open,
+        // animate from the bottom
+        for (NSInteger i = section-1; i >= 0; i--) {
+            if ([self.sections[i] isOpen]) {
                 insertAnimation = UITableViewRowAnimationBottom;
             }
         }
     }
     
-    if (self.enableAnimationFix) {
-        if (self.openedSections.count > 0 &&
-            (section == self.numOfRowsForSection.count-1 || section == self.numOfRowsForSection.count-2) &&
-            !self.allowsMultipleSelection) {
-            insertAnimation = UITableViewRowAnimationFade;
-        }
-    }
+    // KRIS TODO: Fix
+//    if (self.enableAnimationFix) {
+//        if (self.openedSections.count > 0 &&
+//            (section == self.sections.count-1 || section == self.sections.count-2) &&
+//            !self.allowsMultipleSelection) {
+//            insertAnimation = UITableViewRowAnimationFade;
+//        }
+//    }
     
     [self addOpenedSection:section];
     [self beginUpdates];
@@ -368,9 +381,10 @@
 - (void)autoCollapseAllSectionsExceptSection:(NSInteger)section {
     // Get all of the sections that we need to close
     NSMutableSet *sectionsToClose = [[NSMutableSet alloc] init];
-    for (NSNumber *openedSection in self.openedSections) {
-        if (openedSection.integerValue != section && ![self isAlwaysOpenedSection:openedSection.integerValue]) {
-            [sectionsToClose addObject:openedSection];
+    for (NSInteger i = 0; i < self.numberOfSections; i++) {
+        FZAccordionTableViewSection *sectionInfo = self.sections[i];
+        if (section != i && sectionInfo.isOpen && ![self isAlwaysOpenedSection:i]) {
+            [sectionsToClose addObject:@(i)];
         }
     }
     
@@ -387,8 +401,8 @@
             closeAnimation = UITableViewRowAnimationBottom;
         }
         if (self.enableAnimationFix) {
-            if ((sectionToClose.integerValue == self.numOfRowsForSection.count - 1 ||
-                 sectionToClose.integerValue == self.numOfRowsForSection.count - 2) &&
+            if ((sectionToClose.integerValue == self.sections.count - 1 ||
+                 sectionToClose.integerValue == self.sections.count - 2) &&
                 !self.allowsMultipleSelection) {
                 closeAnimation = UITableViewRowAnimationFade;
             }
@@ -412,6 +426,40 @@
 
 #pragma mark - <UITableViewDataSource> -
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    NSInteger numOfSections = 1; // Default value for UITableView is 1
+    
+    if ([self.subclassDataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+        numOfSections = [self.subclassDataSource numberOfSectionsInTableView:tableView];
+    }
+    
+    // Initialize an empty array filled with @(0)
+//    id sections[numOfSections];
+//    memset(sections, (int)[NSNumber numberWithInt:0], numOfSections);
+//    self.numberOfRowsInSection = [NSMutableArray arrayWithObjects:sections count:numOfSections];
+//    self.numberOfRowsInSection = [NSMutableArray arrayWithCapacity:numOfSections];
+//    NSMutableArray *newNumberOfRowsInSection = [NSMutableArray arrayWithCapacity:numOfSections];
+    
+    for (NSInteger i = self.sections.count; i < numOfSections; i++) {
+        FZAccordionTableViewSection *section = [[FZAccordionTableViewSection alloc] initWithNumberOfRows:0];
+        section.open = NO;
+        [self.sections addObject:section];
+        // KRIS TO DO: Handle sections always open and initial open sections.
+    }
+    
+    
+    // First time
+    // it's less
+    // it's more
+    
+    
+    // we must maintain the correct size, yet also copy in the left-over elements.
+    
+    
+    return numOfSections;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSInteger numOfRows = 0;
@@ -419,7 +467,7 @@
     if ([self.subclassDataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
         numOfRows = [self.subclassDataSource tableView:tableView numberOfRowsInSection:section];;
     }
-    self.numOfRowsForSection[@(section)] = @(numOfRows);
+    [self.sections[section] setNumberOfRows:numOfRows];
     
     return ([self isSectionOpen:section]) ? numOfRows : 0;
 }
