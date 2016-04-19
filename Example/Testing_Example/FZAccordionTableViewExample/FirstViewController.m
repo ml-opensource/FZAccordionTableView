@@ -40,9 +40,26 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 - (void)setupTableView {
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     self.tableView.allowMultipleSectionsOpen = NO;
+    self.tableView.keepOneSectionOpen = YES;
+//    self.tableView.initialOpenSections = [NSSet setWithObjects:@(1), nil];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
 //    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
+//    [self testDeletingMultipleSectionsAtTheSameTime];
+}
+
+- (void)testDeletingMultipleSectionsAtTheSameTime {
+    self.tableView.sectionsAlwaysOpen =[NSSet setWithObjects:@(0), @(2), nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSMutableIndexSet *indexSet = [NSMutableIndexSet new];
+        [indexSet addIndex:0];
+        [indexSet addIndex:2];
+        
+        [self.sections removeObjectAtIndex:2];
+        [self.sections removeObjectAtIndex:0];
+        [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+    });
 }
 
 #pragma mark - Class Overrides -
