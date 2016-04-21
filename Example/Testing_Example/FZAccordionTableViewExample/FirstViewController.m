@@ -46,7 +46,18 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
 //    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
+    
+    // [self testAddingSection];
 //    [self testDeletingMultipleSectionsAtTheSameTime];
+}
+
+- (void)testAddingSection
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSInteger section = 100;
+        [self.sections insertObject:@(3) atIndex:section];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
+    });
 }
 
 - (void)testDeletingMultipleSectionsAtTheSameTime {
