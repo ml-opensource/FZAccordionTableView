@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0137E0ED1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */; };
+		0137E0F01CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */; };
 		0156F1441CCD219800E0530C /* FZAccordionTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */; };
 		0156F14B1CCD26F000E0530C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F33A1B24D94A007B97BD /* MainViewController.m */; };
 		0156F14C1CCD26F500E0530C /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */; };
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewInitializationTests.m; sourceTree = "<group>"; };
+		0137E0EE1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableViewTestHelpers.h; sourceTree = "<group>"; };
+		0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewTestHelpers.m; sourceTree = "<group>"; };
 		0156F1411CCD219800E0530C /* FZAccordionTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FZAccordionTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewUITests.m; sourceTree = "<group>"; };
 		0156F1451CCD219800E0530C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +109,10 @@
 		0156F1561CCD2BA400E0530C /* FZAccordionTableViewUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				0137E0EE1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.h */,
+				0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */,
 				0156F1571CCD2BA400E0530C /* FZAccordionTableViewUnitTests.m */,
+				0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */,
 				0156F1591CCD2BA400E0530C /* Info.plist */,
 			);
 			path = FZAccordionTableViewUnitTests;
@@ -313,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0137E0F01CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m in Sources */,
+				0137E0ED1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m in Sources */,
 				0156F1581CCD2BA400E0530C /* FZAccordionTableViewUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,6 +548,7 @@
 				0156F14A1CCD219800E0530C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0156F15C1CCD2BA400E0530C /* Build configuration list for PBXNativeTarget "FZAccordionTableViewUnitTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +557,7 @@
 				0156F15E1CCD2BA400E0530C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01D1F32A1B24D949007B97BD /* Build configuration list for PBXProject "FZAccordionTableViewTests" */ = {
 			isa = XCConfigurationList;

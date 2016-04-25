@@ -98,6 +98,7 @@
 @property id<UITableViewDelegate, FZAccordionTableViewDelegate> subclassDelegate;
 @property id<UITableViewDataSource> subclassDataSource;
 
+@property (nonatomic) BOOL numberOfSectionsCalled;
 @property (strong, nonatomic) NSMutableSet *mutableInitialOpenSections;
 @property (strong, nonatomic) NSMutableArray <FZAccordionTableViewSectionInfo *> *sectionInfos;
 
@@ -114,13 +115,6 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initializeVars];
-    }
-    return self;
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initializeVars];
@@ -128,14 +122,8 @@
     return self;
 }
 
-- (id)init {
-    if (self = [super init]) {
-        [self initializeVars];
-    }
-    return self;
-}
-
 - (void)initializeVars {
+    _numberOfSectionsCalled = NO;
     _sectionInfos = [NSMutableArray new];
     _allowMultipleSectionsOpen = NO;
     _enableAnimationFix = NO;
@@ -419,6 +407,7 @@
 #pragma mark - <UITableViewDataSource> -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    self.numberOfSectionsCalled = YES;
     
     NSInteger numOfSections = 1; // Default value for UITableView is 1
     
@@ -443,16 +432,27 @@
         [self.sectionInfos addObject:section];
     }
     
+    
     return numOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+    if (!self.numberOfSectionsCalled) {
+        // There is some potential UITableView bug where
+        // 'tableView:numberOfRowsInSection:' gets called before
+        // 'numberOfSectionsInTableView' gets called.
+        NSLog(@"ENCOUNTERED UITABLEVIEW BUG");
+        return 0;
+    }
+
     NSInteger numOfRows = 0;
     
     if ([self.subclassDataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
         numOfRows = [self.subclassDataSource tableView:tableView numberOfRowsInSection:section];;
     }
+    
+    return 5;
+    
     [self.sectionInfos[section] setNumberOfRows:numOfRows];
     
     return ([self isSectionOpen:section]) ? numOfRows : 0;

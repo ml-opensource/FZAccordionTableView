@@ -7,55 +7,36 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "FZAccordionTableViewTestHelpers.h"
 #import "MainViewController.h"
 #include <stdlib.h>
 
 @interface FZAccordionTableViewUnitTests : XCTestCase
 
-@property (nonatomic, strong) MainViewController *mainViewController;
+@property (strong, nonatomic) MainViewController *mainViewController;
+@property (weak, nonatomic) FZAccordionTableView *tableView;
 
 @end
 
 @implementation FZAccordionTableViewUnitTests
 
-#pragma mark - Helpers -
-
-//- (MainViewController *)mainViewController {
-//    
-////    MainViewController *mainViewController = (MainViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
-////    if (![mainViewController isKindOfClass:[MainViewController class]]) {
-////        XCTFail(@"The view controller to test on is not correctly extracted. Aborting all tests.");
-////    }
-////    [mainViewController view];
-//    
-//    
-//
-//    return mainViewController;
-//}
-
-- (FZAccordionTableView *)tableView {
-    FZAccordionTableView *tableView = self.mainViewController.tableView;
-    XCTAssertNotNil(tableView);
-    return tableView;
-}
 #pragma mark - Setup
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    MainViewController *mainViewController = (MainViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
-    if (![mainViewController isKindOfClass:[MainViewController class]]) {
-        XCTFail(@"The view controller to test on is not correctly extracted. Aborting all tests.");
-    }
-    [[[UIApplication sharedApplication] delegate] window].rootViewController = mainViewController;
-//    [mainViewController view];
-    self.mainViewController = mainViewController;
+    self.mainViewController = [FZAccordionTableViewTestHelpers setupMainViewController];
+    self.tableView = self.mainViewController.tableView;
+    
+    XCTAssertNotNil(self.mainViewController);
+    XCTAssertNotNil(self.tableView);
+    
+    [self.mainViewController connectTableView];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [[[UIApplication sharedApplication] delegate] window].rootViewController = nil;
+    [FZAccordionTableViewTestHelpers tearDownMainViewController];
     self.mainViewController = nil;
+    self.tableView = nil;
     [super tearDown];
 }
 
@@ -63,42 +44,7 @@
 
 - (void)waitForHeaderViewInSection:(NSInteger)section
 {
-    NSInteger lastSection = -1;
-    NSInteger randomzier = 1;
-    while (![[self tableView] headerViewForSection:section]) {
-        
-        NSLog(@"%@", NSStringFromCGRect([[self tableView] rectForSection:section]));
-        
-        
-        CGRect sectionRect = [[self tableView] rectForSection:section];
-        sectionRect.origin.y -= 100;
-        sectionRect.size.height += 100;
-        [[self tableView] scrollRectToVisible:sectionRect animated:NO];
-        
-        
-        if (lastSection == section) {
-            randomzier++;
-        }
-        else {
-            lastSection = section;
-            randomzier = 1;
-        }
-        
-        if (randomzier > 2) {
-            CGFloat validContentOffSet = self.tableView.contentSize.height - self.tableView.bounds.size.height;
-            CGPoint contentOffset = CGPointMake(0, 1 + arc4random_uniform(validContentOffSet)-10);
-            
-            
-//            [[self tableView] setContentOffset:CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height) animated:NO];
-            
-            [[self tableView] setContentOffset:CGPointMake(0, contentOffset.y) animated:NO];
-            
-            randomzier = 1;
-        }
-        
-        lastSection = section;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
+    [FZAccordionTableViewTestHelpers waitForHeaderViewInSection:section tableView:self.tableView];
 }
 
 #pragma mark - Method 'isSectionOpen' Tests -
@@ -161,28 +107,7 @@
     XCTAssert(![[self tableView] isSectionOpen:0] && [[self tableView] isSectionOpen:1], @"Section 0 should be closed when Section 1 was being forced to be open.");
 }
 
-#pragma mark - Property 'initialOpenSections' Tests -
 
-- (void)testInitialOpenSections {
-    
-
-    
-    
-    NSMutableArray *initialOpenSections = [NSMutableArray new];
-    
-    for (NSInteger i = 0; i < self.tableView.numberOfSections; i++) {
-        [initialOpenSections addObject:@(i)];
-    }
-    
-    self.tableView.initialOpenSections = [NSSet setWithArray:initialOpenSections];
-    
-    
-    for (NSInteger i = 0; i < self.tableView.numberOfSections; i++) {
-        [self waitForHeaderViewInSection:i];
-        
-        XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
-    }
-}
 //
 //#pragma mark - Property 'sectionsAlwaysOpen' Tests -
 //

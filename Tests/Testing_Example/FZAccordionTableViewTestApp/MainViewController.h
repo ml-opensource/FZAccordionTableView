@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet FZAccordionTableView *tableView;
 @property (strong, nonatomic) NSMutableArray <NSNumber *> *sections;
 
-
+- (void)connectTableView;
 
 @end
 

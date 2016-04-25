@@ -40,9 +40,16 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 //    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     
+//     [self connectTableView];
     // [self testSettingProperties];
     // [self testAddingSection];
     // [self testDeletingMultipleSectionsAtTheSameTime];
+}
+
+- (void)connectTableView
+{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)testSettingProperties
