@@ -6,21 +6,18 @@
 //  Copyright (c) 2015 Fuzz Productions, LLC. All rights reserved.
 //
 
-#import "FirstViewController.h"
-#import "FZAccordionTableView.h"
+#import "MainViewController.h"
 #import "AccordionHeaderView.h"
 #include <stdlib.h>
 
 static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdentifier";
 
-@interface FirstViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray <NSNumber *> *sections;
-@property (weak, nonatomic) IBOutlet FZAccordionTableView *tableView;
 
 @end
 
-@implementation FirstViewController
+@implementation MainViewController
 
 #pragma mark - Lifecycle -
 
@@ -31,24 +28,29 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 }
 
 - (void)setupData {
+    NSInteger numberOfSections = 10 + arc4random_uniform(10);
     self.sections = [NSMutableArray new];
-    for (NSInteger i = 0; i < 100; i++) {
+    for (NSInteger i = 0; i < numberOfSections; i++) {
         [self.sections addObject:@(arc4random_uniform(10))];
     }
 }
 
 - (void)setupTableView {
-    self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    self.tableView.allowMultipleSectionsOpen = NO;
-    self.tableView.keepOneSectionOpen = YES;
-//    self.tableView.initialOpenSections = [NSSet setWithObjects:@(1), nil];
-    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
 //    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     
+    // [self testSettingProperties];
     // [self testAddingSection];
-//    [self testDeletingMultipleSectionsAtTheSameTime];
+    // [self testDeletingMultipleSectionsAtTheSameTime];
+}
+
+- (void)testSettingProperties
+{
+    //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    //    self.tableView.allowMultipleSectionsOpen = NO;
+    //    self.tableView.keepOneSectionOpen = YES;
+    //    self.tableView.initialOpenSections = [NSSet setWithObjects:@(1), nil];
 }
 
 - (void)testAddingSection
