@@ -59,4 +59,33 @@
         XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
     }
 }
+
+#pragma mark - Property 'sectionsAlwaysOpen' Tests -
+
+- (void)testSectionsAlwaysOpen {
+    NSMutableArray *sectionsAlwaysOpen = [NSMutableArray new];
+    for (NSInteger i = 0; i < self.mainViewController.sections.count; i++) {
+        [sectionsAlwaysOpen addObject:@(i)];
+    }
+    self.tableView.sectionsAlwaysOpen = [NSSet setWithArray:sectionsAlwaysOpen];
+    
+    [self.mainViewController connectTableView];
+    
+    // Test that no matter which way you toggle the section, the section remains open.
+    for (NSInteger i = 0; i < self.tableView.numberOfSections; i++) {
+        
+        [self waitForHeaderViewInSection:i];
+        [self.tableView toggleSection:i];
+        
+        XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
+    }
+    for (NSInteger i = 0; i < self.tableView.numberOfSections; i++) {
+        
+        [self waitForHeaderViewInSection:i];
+        [self.tableView toggleSection:i];
+        
+        XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
+    }
+}
+
 @end
