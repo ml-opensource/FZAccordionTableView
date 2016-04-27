@@ -11,10 +11,10 @@
 
 @interface MainViewController : UIViewController
 
+@property (weak, nonatomic) id <FZAccordionTableViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet FZAccordionTableView *tableView;
 @property (strong, nonatomic) NSMutableArray <NSNumber *> *sections;
 
 - (void)connectTableView;
 
 @end
-

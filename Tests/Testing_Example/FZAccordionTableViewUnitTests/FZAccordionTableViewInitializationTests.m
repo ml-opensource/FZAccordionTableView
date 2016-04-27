@@ -7,12 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FZAccordionTableViewTestHelpers.h"
+#import "FZAccordionTableViewTestBase.h"
 
-@interface FZAccordionTableViewInitializationTests : XCTestCase
-
-@property (strong, nonatomic) MainViewController *mainViewController;
-@property (weak, nonatomic) FZAccordionTableView *tableView;
+@interface FZAccordionTableViewInitializationTests : FZAccordionTableViewTestBase
 
 @end
 
@@ -22,22 +19,10 @@
 
 - (void)setUp {
     [super setUp];
-    self.mainViewController = [FZAccordionTableViewTestHelpers setupMainViewController];
-    self.tableView = self.mainViewController.tableView;
 }
 
 - (void)tearDown {
-    [FZAccordionTableViewTestHelpers tearDownMainViewController];
-    self.mainViewController = nil;
-    self.tableView = nil;
     [super tearDown];
-}
-
-#pragma mark - Helpers
-
-- (void)waitForHeaderViewInSection:(NSInteger)section
-{
-    [FZAccordionTableViewTestHelpers waitForHeaderViewInSection:section tableView:self.tableView];
 }
 
 #pragma mark - Property 'initialOpenSections' Tests -
@@ -46,7 +31,7 @@
     
     NSMutableArray *initialOpenSections = [NSMutableArray new];
     
-    for (NSInteger i = 0; i < self.mainViewController.sections.count; i++) {
+    for (NSInteger i = 0; i < self.mainViewController.sections.count/2; i++) {
         [initialOpenSections addObject:@(i)];
     }
     
@@ -54,9 +39,16 @@
     
     [self.mainViewController connectTableView];
     
-    for (NSInteger i = 0; i < self.tableView.numberOfSections; i++) {
+    // First half should be open
+    for (NSInteger i = 0; i < self.mainViewController.sections.count/2; i++) {
         [self waitForHeaderViewInSection:i];
         XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
+    }
+    
+    // Second half should be open
+    for (NSInteger i = self.mainViewController.sections.count/2; i < self.mainViewController.sections.count; i++) {
+        [self waitForHeaderViewInSection:i];
+        XCTAssert(![self.tableView isSectionOpen:i], @"Section %d should be closed.", (int)i);
     }
 }
 

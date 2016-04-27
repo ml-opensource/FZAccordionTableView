@@ -6,34 +6,89 @@
 //  Copyright © 2016 Fuzz. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "FZAccordionTableViewTestBase.h"
 
-@interface FZAccordionTableViewDelegateTests : XCTestCase
+@interface FZAccordionTableViewDelegateTests : FZAccordionTableViewTestBase <FZAccordionTableViewDelegate>
+
+@property (nonatomic) BOOL willOpenSectionCalled;
+@property (nonatomic) BOOL didOpenSectionCalled;
+@property (nonatomic) BOOL willCloseSectionCalled;
+@property (nonatomic) BOOL didCloseSectionCalled;
 
 @end
 
 @implementation FZAccordionTableViewDelegateTests
 
+#pragma mark - Setup -
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [self.mainViewController connectTableView];
+    self.mainViewController.delegate = self;
+    self.willOpenSectionCalled = NO;
+    self.didOpenSectionCalled = NO;
+    self.willCloseSectionCalled = NO;
+    self.didCloseSectionCalled = NO;
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    self.mainViewController.delegate = nil;
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+#pragma mark - Tests -
+
+- (void)testOpening {
+    [self waitForHeaderViewInSection:0];
+    [self.tableView toggleSection:0];
+    
+    XCTAssert(self.willOpenSectionCalled, @"On opening of a section, 'willOpenSection:' must be called");
+    
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    
+    XCTAssert(self.didOpenSectionCalled, @"On opening of a section, 'didOpenSection:' must be called");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testClosing {
+    
+    [self waitForHeaderViewInSection:0];
+    // First open
+    [self.tableView toggleSection:0];
+    // Now, close
+    [self.tableView toggleSection:0];
+    
+    XCTAssert(self.willCloseSectionCalled, @"On closing of a section, 'willCloseSection:' must be called");
+    
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    
+    XCTAssert(self.didCloseSectionCalled, @"On closing of a section, 'didCloseSection:' must be called");
+}
+
+
+#pragma mark - <FZAccordionTableViewDelegate> -
+
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+    XCTAssertNotNil(tableView);
+    XCTAssertNotNil(header);
+    self.willOpenSectionCalled = YES;
+}
+
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+    XCTAssertNotNil(tableView);
+    XCTAssertNotNil(header);
+    self.didOpenSectionCalled = YES;
+}
+
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+    XCTAssertNotNil(tableView);
+    XCTAssertNotNil(header);
+    self.willCloseSectionCalled = YES;
+}
+
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+    XCTAssertNotNil(tableView);
+    XCTAssertNotNil(header);
+    self.didCloseSectionCalled = YES;
 }
 
 @end

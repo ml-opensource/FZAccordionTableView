@@ -149,19 +149,19 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 #pragma mark - <FZAccordionTableViewDelegate> -
 
 - (void)tableView:(FZAccordionTableView *)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
-
+    [self.delegate tableView:tableView willOpenSection:section withHeader:header];
 }
 
 - (void)tableView:(FZAccordionTableView *)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
-
+    [self.delegate tableView:tableView didOpenSection:section withHeader:header];
 }
 
 - (void)tableView:(FZAccordionTableView *)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
-
+    [self.delegate tableView:tableView willCloseSection:section withHeader:header];
 }
 
 - (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
-    
+    [self.delegate tableView:tableView didCloseSection:section withHeader:header];
 }
 
 @end
