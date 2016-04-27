@@ -9,13 +9,8 @@
 /* Begin PBXBuildFile section */
 		0137E0ED1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */; };
 		0137E0F01CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */; };
-		0156F1441CCD219800E0530C /* FZAccordionTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */; };
-		0156F14B1CCD26F000E0530C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F33A1B24D94A007B97BD /* MainViewController.m */; };
-		0156F14C1CCD26F500E0530C /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */; };
 		0156F14D1CCD2A6E00E0530C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F33F1B24D94A007B97BD /* Main.storyboard */; };
 		0156F14E1CCD2A7600E0530C /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */; };
-		0156F14F1CCD2A7B00E0530C /* AccordionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */; };
-		0156F1501CCD2A7E00E0530C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3371B24D94A007B97BD /* AppDelegate.m */; };
 		0156F1581CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156F1571CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m */; };
 		01B0D1B81CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0D1B71CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m */; };
 		01B0D1BA1CD038000012BBCA /* FZAccordionTableViewTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0D1B91CD038000012BBCA /* FZAccordionTableViewTestBase.m */; };
@@ -325,11 +320,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0156F1441CCD219800E0530C /* FZAccordionTableViewUITests.m in Sources */,
-				0156F14C1CCD26F500E0530C /* FZAccordionTableView.m in Sources */,
-				0156F14F1CCD2A7B00E0530C /* AccordionHeaderView.m in Sources */,
-				0156F14B1CCD26F000E0530C /* MainViewController.m in Sources */,
-				0156F1501CCD2A7E00E0530C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

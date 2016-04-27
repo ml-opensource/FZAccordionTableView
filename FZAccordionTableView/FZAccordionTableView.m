@@ -403,7 +403,6 @@
     }
 }
 
-
 #pragma mark - <UITableViewDataSource> -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -432,7 +431,6 @@
         [self.sectionInfos addObject:section];
     }
     
-    
     return numOfSections;
 }
 
@@ -450,8 +448,6 @@
     if ([self.subclassDataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
         numOfRows = [self.subclassDataSource tableView:tableView numberOfRowsInSection:section];;
     }
-    
-    return 5;
     
     [self.sectionInfos[section] setNumberOfRows:numOfRows];
     

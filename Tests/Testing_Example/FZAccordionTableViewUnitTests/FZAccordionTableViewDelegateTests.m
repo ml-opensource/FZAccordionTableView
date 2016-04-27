@@ -39,17 +39,28 @@
 #pragma mark - Tests -
 
 - (void)testOpening {
+    XCTAssert(!self.willOpenSectionCalled);
+    XCTAssert(!self.didOpenSectionCalled);
+    
     [self waitForHeaderViewInSection:0];
     [self.tableView toggleSection:0];
     
     XCTAssert(self.willOpenSectionCalled, @"On opening of a section, 'willOpenSection:' must be called");
     
-    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"On opening of a section, 'didOpenSection:' must be called"];
     
-    XCTAssert(self.didOpenSectionCalled, @"On opening of a section, 'didOpenSection:' must be called");
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.didOpenSectionCalled) {
+            [expectation fulfill];
+        }
+    });
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError * _Nullable error) { }];
 }
 
 - (void)testClosing {
+    XCTAssert(!self.willCloseSectionCalled);
+    XCTAssert(!self.didCloseSectionCalled);
     
     [self waitForHeaderViewInSection:0];
     // First open
@@ -59,9 +70,13 @@
     
     XCTAssert(self.willCloseSectionCalled, @"On closing of a section, 'willCloseSection:' must be called");
     
-    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
-    
-    XCTAssert(self.didCloseSectionCalled, @"On closing of a section, 'didCloseSection:' must be called");
+    XCTestExpectation *expectation = [self expectationWithDescription:@"On closing of a section, 'didCloseSection:' must be called"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.didCloseSectionCalled) {
+            [expectation fulfill];
+        }
+    });
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError * _Nullable error) { }];
 }
 
 
