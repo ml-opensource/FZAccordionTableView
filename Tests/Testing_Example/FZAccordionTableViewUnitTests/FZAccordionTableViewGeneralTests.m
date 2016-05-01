@@ -99,7 +99,28 @@
 
 #pragma mark - Test Adding Rows - 
 
-// rows must be open
+- (void)testAddingRows {
+
+    NSInteger section = 0;
+    NSInteger numberOfRowsToAdd = 33;
+    
+    // We can only add rows to an open section
+    [self waitForHeaderViewInSection:0];
+    [self.tableView toggleSection:0];
+    
+    NSInteger numberOfRowsExisting = [self.mainViewController.sections[section] integerValue];
+    
+    NSMutableArray *rowsIndexPaths = [NSMutableArray new];
+    for (int i = (int)numberOfRowsExisting; i < numberOfRowsToAdd+numberOfRowsExisting; i++) {
+        [rowsIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:section]];
+    }
+
+    self.mainViewController.sections[section] = @(numberOfRowsExisting + numberOfRowsToAdd);
+    [self.tableView insertRowsAtIndexPaths:rowsIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    XCTAssert(numberOfRowsExisting + numberOfRowsToAdd  == [self.tableView.sectionInfos[section] numberOfRows], @"Unequal number of rows in section %d.", (int)section);
+
+}
 
 #pragma mark - Deletion Row Tests -
 
@@ -221,6 +242,15 @@
     
     XCTAssert([self.mainViewController.sections[section] integerValue] == [self.tableView.sectionInfos[section] numberOfRows], @"The data source section rows should match up.");
     XCTAssert(self.mainViewController.sections.count == self.tableView.numberOfSections, @"The section counts should match up.");
+}
+
+#pragma mark - Method 'isSectionOpen' Tests -
+
+- (void)testDataSourceMapping {
+    for (NSInteger section = 0; section < self.tableView.numberOfSections; section++) {
+        [self waitForHeaderViewInSection:section];
+        XCTAssert([self.mainViewController.sections[section] integerValue] == [self.tableView.sectionInfos[section] numberOfRows], @"The external data source does not match the internal FZAccordionTableView datasource in section %d.", (int)section);
+    }
 }
 
 @end
