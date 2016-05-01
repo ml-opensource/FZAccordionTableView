@@ -17,7 +17,6 @@
     }
     
     [[[UIApplication sharedApplication] delegate] window].rootViewController = mainViewController;
-    
     [mainViewController view];
     
     return mainViewController;

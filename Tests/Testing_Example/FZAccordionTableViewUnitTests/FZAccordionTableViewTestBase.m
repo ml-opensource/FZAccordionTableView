@@ -19,6 +19,8 @@
     
     XCTAssertNotNil(self.mainViewController);
     XCTAssertNotNil(self.tableView);
+    
+    [[[UIApplication sharedApplication] delegate] window].layer.speed = 100;
 }
 
 - (void)tearDown {

@@ -14,7 +14,6 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
-
 @end
 
 @implementation MainViewController
@@ -39,29 +38,32 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
 //    [self.tableView registerClass:[FZAccordionTableViewHeaderView class] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"AccordionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:kAccordionHeaderViewReuseIdentifier];
-    
-//     [self connectTableView];
+}
+
+/**
+ These methods shouldn't be executed while testing.
+ */
+- (void)executeTestMethods {
+    [self connectTableView];
     // [self testSettingProperties];
     // [self testAddingSection];
     // [self testDeletingMultipleSectionsAtTheSameTime];
 }
 
-- (void)connectTableView
-{
+- (void)connectTableView {
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
-- (void)testSettingProperties
-{
+- (void)testSettingProperties {
     //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     //    self.tableView.allowMultipleSectionsOpen = NO;
     //    self.tableView.keepOneSectionOpen = YES;
     //    self.tableView.initialOpenSections = [NSSet setWithObjects:@(1), nil];
 }
 
-- (void)testAddingSection
-{
+- (void)testAddingSection {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSInteger section = 100;
         [self.sections insertObject:@(3) atIndex:section];
