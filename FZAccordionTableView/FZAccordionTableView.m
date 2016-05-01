@@ -228,6 +228,14 @@
     }
 }
 
+- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
+    for (NSIndexPath *indexPath in indexPaths) {
+        NSAssert([self.sectionInfos[indexPath.section] isOpen], @"Can't insert rows in a closed section: %d.", (int)indexPath.section);
+    }
+    [super insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+}
+
 #pragma mark - Forwarding handling -
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
