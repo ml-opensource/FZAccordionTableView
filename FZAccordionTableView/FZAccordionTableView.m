@@ -95,8 +95,8 @@
 
 @interface FZAccordionTableView() <UITableViewDataSource, UITableViewDelegate, FZAccordionTableViewHeaderViewDelegate>
 
-@property id<UITableViewDelegate, FZAccordionTableViewDelegate> subclassDelegate;
-@property id<UITableViewDataSource> subclassDataSource;
+@property (weak, nonatomic) id<UITableViewDelegate, FZAccordionTableViewDelegate> subclassDelegate;
+@property (weak, nonatomic) id<UITableViewDataSource> subclassDataSource;
 
 @property (nonatomic) BOOL numberOfSectionsCalled;
 @property (strong, nonatomic) NSMutableSet *mutableInitialOpenSections;
@@ -150,7 +150,7 @@
 
 - (NSArray *)getIndexPathsForSection:(NSInteger)section {
     
-    NSInteger numOfRows =  [self.sectionInfos[section] numberOfRows];
+    NSInteger numOfRows = [self.sectionInfos[section] numberOfRows];
     NSMutableArray *indexPaths = [NSMutableArray array];
     for (int row = 0; row < numOfRows; row++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];
