@@ -123,8 +123,8 @@
 }
 
 - (void)initializeVars {
-    _numberOfSectionsCalled = NO;
     _sectionInfos = [NSMutableArray new];
+    _numberOfSectionsCalled = NO;
     _allowMultipleSectionsOpen = NO;
     _enableAnimationFix = NO;
     _keepOneSectionOpen = NO;
@@ -140,12 +140,8 @@
     return [self.sectionsAlwaysOpen containsObject:@(section)];
 }
 
-- (void)addOpenedSection:(NSInteger)section { // KRIS TODO: Rename this to markSectionOpen
-    [self.sectionInfos[section] setOpen:YES];
-}
-
-- (void)removeOpenedSection:(NSInteger)section {
-    [self.sectionInfos[section] setOpen:NO];
+- (void)markSection:(NSInteger)section open:(BOOL)open {
+    [self.sectionInfos[section] setOpen:open];
 }
 
 - (NSArray *)getIndexPathsForSection:(NSInteger)section {
@@ -345,7 +341,7 @@
         }
     }
     
-    [self addOpenedSection:section];
+    [self markSection:section open:YES];
     [self beginUpdates];
     [CATransaction setCompletionBlock:^{
         if ([self.subclassDelegate respondsToSelector:@selector(tableView:didOpenSection:withHeader:)]) {
@@ -361,7 +357,7 @@
         [self.subclassDelegate tableView:self willCloseSection:section withHeader:sectionHeaderView];
     }
     
-    [self removeOpenedSection:section];
+    [self markSection:section open:NO];
     [self beginUpdates];
     [CATransaction setCompletionBlock: ^{
         if ([self.subclassDelegate respondsToSelector:@selector(tableView:didCloseSection:withHeader:)]) {
@@ -404,7 +400,7 @@
         
         // Delete the cells for section that is closing
         NSArray *indexPathsToDelete = [self getIndexPathsForSection:sectionToClose.integerValue];
-        [self removeOpenedSection:sectionToClose.integerValue];
+        [self markSection:sectionToClose.integerValue open:NO];
         
         [self beginUpdates];
         [CATransaction setCompletionBlock:^{
@@ -453,7 +449,6 @@
         // There is some potential UITableView bug where
         // 'tableView:numberOfRowsInSection:' gets called before
         // 'numberOfSectionsInTableView' gets called.
-        NSLog(@"ENCOUNTERED UITABLEVIEW BUG");
         return 0;
     }
 
