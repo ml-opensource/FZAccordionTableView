@@ -136,10 +136,6 @@
     return [self.sectionInfos[section] isOpen];
 }
 
-- (BOOL)isAlwaysOpenedSection:(NSInteger)section {
-    return [self.sectionsAlwaysOpen containsObject:@(section)];
-}
-
 - (void)markSection:(NSInteger)section open:(BOOL)open {
     [self.sectionInfos[section] setOpen:open];
 }
@@ -186,6 +182,14 @@
     return section;
 }
 
+- (BOOL)canInteractWithHeaderAtSection:(NSInteger)section {
+    BOOL canInteractWithHeader = YES;
+    if ([self.delegate respondsToSelector:@selector(tableView:canInteractWithHeaderAtSection:)]) {
+        canInteractWithHeader = [self.subclassDelegate tableView:self canInteractWithHeaderAtSection:section];
+    }
+    return canInteractWithHeader;
+}
+
 #pragma mark - UITableView Overrides -
 
 - (void)setDelegate:(id<UITableViewDelegate, FZAccordionTableViewDelegate>)delegate {
@@ -207,18 +211,6 @@
     }];
     
     [super deleteSections:sections withRowAnimation:animation];
-    
-    // Re-open any sections that were closed by deletion, but
-    // must be always open.
-    if (self.sectionsAlwaysOpen.count > 0) {
-        [sections enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger section, BOOL * _Nonnull stop) {
-            if ([self.sectionsAlwaysOpen containsObject:@(section)] && ![self isSectionOpen:section]) {
-                FZAccordionTableViewHeaderView *sectionHeaderView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
-                NSArray *indexPathsToModify = [self getIndexPathsForSection:section];
-                [self openSection:section withHeaderView:sectionHeaderView andIndexPaths:indexPathsToModify];
-            }
-        }];
-    }
 }
 
 - (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
@@ -253,11 +245,6 @@
     _mutableInitialOpenSections = [initialOpenedSections mutableCopy];
 }
 
-- (void)setSectionsAlwaysOpen:(NSSet<NSNumber *> *)sectionsAlwaysOpen {
-    NSAssert(self.sectionInfos.count == 0, @"'sectionsAlwaysOpen' MUST be set before the tableView has started loading data.");
-    _sectionsAlwaysOpen = sectionsAlwaysOpen;
-}
-
 #pragma mark - FZAccordionTableViewHeaderViewDelegate -
 
 - (void)tappedHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
@@ -265,11 +252,10 @@
     
     NSInteger section = [self sectionForHeaderView:sectionHeaderView];
     
-    // Do not interact with sections that are always opened
-    if ([self isAlwaysOpenedSection:section]) {
+    if (![self canInteractWithHeaderAtSection:section]) {
         return;
     }
-    
+
     // Keep at least one section open
     if (self.keepOneSectionOpen) {
         NSInteger countOfOpenSections = 0;
@@ -279,13 +265,7 @@
                 countOfOpenSections++;
             }
         }
-        
-        if (self.sectionsAlwaysOpen.count > 0) {
-            // 'sectionsAlwaysOpen' does not have an influence
-            // on 'keepOneSectionOpen'
-            countOfOpenSections -= self.sectionsAlwaysOpen.count;
-        }
-        
+
         if (countOfOpenSections == 1 && [self isSectionOpen:section]) {
             return;
         }
@@ -293,17 +273,14 @@
     
     BOOL openSection = [self isSectionOpen:section];
     
-    // Create an array of index paths that will be inserted/removed
-    NSArray *indexPathsToModify = [self getIndexPathsForSection:section];
-    
     [self beginUpdates];
     
     // Insert/remove rows to simulate opening/closing of a header
     if (!openSection) {
-        [self openSection:section withHeaderView:sectionHeaderView andIndexPaths:indexPathsToModify];
+        [self openSection:section withHeaderView:sectionHeaderView];
     }
     else { // The section is currently open
-        [self closeSection:section withHeaderView:sectionHeaderView andIndexPaths:indexPathsToModify];
+        [self closeSection:section withHeaderView:sectionHeaderView];
     }
     
     // Auto-collapse the rest of the opened sections
@@ -314,7 +291,11 @@
     [self endUpdates];
 }
 
-- (void)openSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView andIndexPaths:(NSArray *)indexPathsToModify {
+- (void)openSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
+    if (![self canInteractWithHeaderAtSection:section]) {
+        return;
+    }
+    
     if ([self.subclassDelegate respondsToSelector:@selector(tableView:willOpenSection:withHeader:)]) {
         [self.subclassDelegate tableView:self willOpenSection:section withHeader:sectionHeaderView];
     }
@@ -337,6 +318,7 @@
         }
     }
     
+    NSArray *indexPathsToModify = [self getIndexPathsForSection:section];
     [self markSection:section open:YES];
     [self beginUpdates];
     [CATransaction setCompletionBlock:^{
@@ -348,11 +330,19 @@
     [self endUpdates];
 }
 
-- (void)closeSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView andIndexPaths:(NSArray *)indexPathsToModify {
+- (void)closeSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
+    [self closeSection:section withHeaderView:sectionHeaderView rowAnimation:UITableViewRowAnimationTop];
+}
+
+- (void)closeSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView rowAnimation:(UITableViewRowAnimation)rowAnimation {
+    if (![self canInteractWithHeaderAtSection:section]) {
+        return;
+    }
+    
     if ([self.subclassDelegate respondsToSelector:@selector(tableView:willCloseSection:withHeader:)]) {
         [self.subclassDelegate tableView:self willCloseSection:section withHeader:sectionHeaderView];
     }
-    
+    NSArray *indexPathsToModify = [self getIndexPathsForSection:section];
     [self markSection:section open:NO];
     [self beginUpdates];
     [CATransaction setCompletionBlock: ^{
@@ -369,18 +359,14 @@
     NSMutableSet *sectionsToClose = [[NSMutableSet alloc] init];
     for (NSInteger i = 0; i < self.numberOfSections; i++) {
         FZAccordionTableViewSectionInfo *sectionInfo = self.sectionInfos[i];
-        if (section != i && sectionInfo.isOpen && ![self isAlwaysOpenedSection:i]) {
+        if (section != i && sectionInfo.isOpen) {
             [sectionsToClose addObject:@(i)];
         }
     }
     
     // Close the found sections
     for (NSNumber *sectionToClose in sectionsToClose) {
-        
-        if ([self.subclassDelegate respondsToSelector:@selector(tableView:willCloseSection:withHeader:)]) {
-            [self.subclassDelegate tableView:self willCloseSection:sectionToClose.integerValue withHeader:[self headerViewForSection:sectionToClose.integerValue]];
-        }
-        
+       
         // Change animations based off which sections are closed
         UITableViewRowAnimation closeAnimation = UITableViewRowAnimationTop;
         if (section < sectionToClose.integerValue) {
@@ -390,22 +376,11 @@
             if (!self.allowsMultipleSelection &&
                 (sectionToClose.integerValue == self.sectionInfos.count - 1 ||
                  sectionToClose.integerValue == self.sectionInfos.count - 2)) {
-                closeAnimation = UITableViewRowAnimationFade;
-            }
+                    closeAnimation = UITableViewRowAnimationFade;
+                }
         }
         
-        // Delete the cells for section that is closing
-        NSArray *indexPathsToDelete = [self getIndexPathsForSection:sectionToClose.integerValue];
-        [self markSection:sectionToClose.integerValue open:NO];
-        
-        [self beginUpdates];
-        [CATransaction setCompletionBlock:^{
-            if ([self.subclassDelegate respondsToSelector:@selector(tableView:didCloseSection:withHeader:)]) {
-                [self.subclassDelegate tableView:self didCloseSection:sectionToClose.integerValue withHeader:[self headerViewForSection:sectionToClose.integerValue]];
-            }
-        }];
-        [self deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:closeAnimation];
-        [self endUpdates];
+        [self closeSection:sectionToClose.integerValue withHeaderView:(FZAccordionTableViewHeaderView *)[self headerViewForSection:sectionToClose.integerValue] rowAnimation:closeAnimation];
     }
 }
 
@@ -428,10 +403,6 @@
         if (self.mutableInitialOpenSections.count > 0 && [self.mutableInitialOpenSections containsObject:@(i)]) {
             section.open = YES;
             [self.mutableInitialOpenSections removeObject:@(i)];
-        }
-        // Account for sections that are always open
-        else {
-            section.open = [self.sectionsAlwaysOpen containsObject:@(i)];
         }
         
         [self.sectionInfos addObject:section];

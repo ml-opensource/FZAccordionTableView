@@ -12,7 +12,7 @@
 
 static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdentifier";
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, FZAccordionTableViewDelegate>
 
 @end
 
@@ -24,6 +24,7 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
     [super viewDidLoad];
     [self setupData];
     [self setupTableView];
+    // [self executeTestMethods];
 }
 
 - (void)setupData {
@@ -45,22 +46,21 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
  */
 - (void)executeTestMethods {
     [self connectTableView];
-    // [self testSettingProperties];
+    [self testSettingProperties];
     // [self testAddingSection];
     // [self testDeletingMultipleSectionsAtTheSameTime];
 }
 
 - (void)connectTableView {
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
 - (void)testSettingProperties {
-    //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+        self.tableView.allowsMultipleSelectionDuringEditing = NO;
     //    self.tableView.allowMultipleSectionsOpen = NO;
-    //    self.tableView.keepOneSectionOpen = YES;
-    //    self.tableView.initialOpenSections = [NSSet setWithObjects:@(1), nil];
+//        self.tableView.keepOneSectionOpen = YES;
+    self.tableView.initialOpenSections = [NSSet setWithObjects:@(4), @(6), nil];
 }
 
 - (void)testAddingSection {
@@ -72,7 +72,6 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 }
 
 - (void)testDeletingMultipleSectionsAtTheSameTime {
-    self.tableView.sectionsAlwaysOpen =[NSSet setWithObjects:@(0), @(2), nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSMutableIndexSet *indexSet = [NSMutableIndexSet new];
         [indexSet addIndex:0];
@@ -164,6 +163,13 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 
 - (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
     [self.delegate tableView:tableView didCloseSection:section withHeader:header];
+}
+
+- (BOOL)tableView:(FZAccordionTableView *)tableView canInteractWithHeaderAtSection:(NSInteger)section {
+    if ([self.delegate respondsToSelector:@selector(tableView:canInteractWithHeaderAtSection:)]) {
+        return [self.delegate tableView:tableView canInteractWithHeaderAtSection:section];
+    }
+    return YES;
 }
 
 @end

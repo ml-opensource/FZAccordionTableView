@@ -32,6 +32,8 @@
 
 /*!
  @desc  The section which this header view is part of.
+ 
+        Deprecated. Use sectionForHeaderView: instead.
  */
 @property (nonatomic, readonly) NSInteger section DEPRECATED_MSG_ATTRIBUTE("Use sectionForHeaderView: instead.");
 
@@ -57,8 +59,7 @@
  
         If set to NO, all sections can be closed.
  
-        Note that this does NOT influence 'sectionsAlwaysOpen.' Also,
-        use 'sectionsInitiallyOpen' to specify which section should be 
+        Use 'sectionsInitiallyOpen' to specify which section should be
         open at the start, otherwise, all sections will be closed at 
         the start even if the property is set to YES.
  
@@ -79,9 +80,9 @@
         The headers of these sections will not call the
         FZAccordionTableViewDelegate methods.
  
-        Must be set before any data is loaded.
+        Deprecated. Use tableView:canInteractWithHeaderAtSection: instead.
  */
-@property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen;
+@property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen DEPRECATED_MSG_ATTRIBUTE("Use tableView:canInteractWithHeaderAtSection: instead.");
 
 /*!
  @desc  Enables the fading of cells for the last two rows of the
@@ -122,6 +123,18 @@
 @protocol FZAccordionTableViewDelegate <NSObject>
 
 @optional
+
+/**
+ @desc  Implement to respond to which sections can be interacted with.
+ 
+        If NO is returned for a section, the section can neither be opened or closed. 
+        It stays in it's initial state no matter what.
+ 
+        Use 'initialOpenSections' to mark a section open from the start.
+ 
+        The default return value is YES.
+ */
+- (BOOL)tableView:(FZAccordionTableView * _Nonnull)tableView canInteractWithHeaderAtSection:(NSInteger)section;
 
 - (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 - (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
