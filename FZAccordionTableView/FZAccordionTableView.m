@@ -145,18 +145,15 @@
 }
 
 - (NSArray *)getIndexPathsForSection:(NSInteger)section {
-    
     NSInteger numOfRows = [self.sectionInfos[section] numberOfRows];
     NSMutableArray *indexPaths = [NSMutableArray array];
     for (int row = 0; row < numOfRows; row++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];
     }
-    
     return indexPaths;
 }
 
-- (void)toggleSection:(NSInteger)section {
-    
+- (void)toggleSection:(NSInteger)section { 
     FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
     [self tappedHeaderView:headerView];
 }
@@ -224,10 +221,9 @@
     }
 }
 
-- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
-{
+- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
     for (NSIndexPath *indexPath in indexPaths) {
-        NSAssert([self.sectionInfos[indexPath.section] isOpen], @"Can't insert rows in a closed section: %d.", (int)indexPath.section);
+        NSAssert([self isSectionOpen:indexPath.section], @"Can't insert rows in a closed section: %d.", (int)indexPath.section);
     }
     [super insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }

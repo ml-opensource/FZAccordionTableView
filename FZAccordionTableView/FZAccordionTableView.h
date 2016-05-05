@@ -111,7 +111,7 @@
 /*!
  @desc  Finds the section of a header view.
  
- @param headerView The header view whose section you want to find.
+ @param headerView The header view whose section must be found.
  
  @returns The section of the header view.
  */
