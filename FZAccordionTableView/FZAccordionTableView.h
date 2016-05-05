@@ -69,6 +69,8 @@
 /*!
  @desc  Defines which sections should be open the first time the
         table is shown.
+ 
+        Must be set before any data is loaded.
  */
 @property (strong, nonatomic, nullable) NSSet <NSNumber *> *initialOpenSections;
 
@@ -76,6 +78,8 @@
  @desc  Defines which sections will always be open.
         The headers of these sections will not call the
         FZAccordionTableViewDelegate methods.
+ 
+        Must be set before any data is loaded.
  */
 @property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen;
 

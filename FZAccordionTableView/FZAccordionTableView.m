@@ -256,8 +256,14 @@
 #pragma mark - Override Setters -
 
 - (void)setInitialOpenSections:(NSSet *)initialOpenedSections {
+    NSAssert(self.sectionInfos.count == 0, @"'initialOpenedSections' MUST be set before the tableView has started loading data.");
     _initialOpenSections = initialOpenedSections;
     _mutableInitialOpenSections = [initialOpenedSections mutableCopy];
+}
+
+- (void)setSectionsAlwaysOpen:(NSSet<NSNumber *> *)sectionsAlwaysOpen {
+    NSAssert(self.sectionInfos.count == 0, @"'sectionsAlwaysOpen' MUST be set before the tableView has started loading data.");
+    _sectionsAlwaysOpen = sectionsAlwaysOpen;
 }
 
 #pragma mark - FZAccordionTableViewHeaderViewDelegate -
