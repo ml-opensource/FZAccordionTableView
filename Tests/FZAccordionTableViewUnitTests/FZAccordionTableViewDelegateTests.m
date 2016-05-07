@@ -14,6 +14,7 @@
 @property (nonatomic) BOOL didOpenSectionCalled;
 @property (nonatomic) BOOL willCloseSectionCalled;
 @property (nonatomic) BOOL didCloseSectionCalled;
+@property (nonatomic) BOOL canInteractWithHeaderAtSection;
 
 @end
 
@@ -29,6 +30,7 @@
     self.didOpenSectionCalled = NO;
     self.willCloseSectionCalled = NO;
     self.didCloseSectionCalled = NO;
+    self.canInteractWithHeaderAtSection = YES;
 }
 
 - (void)tearDown {
@@ -36,7 +38,7 @@
     self.mainViewController.delegate = nil;
 }
 
-#pragma mark - Tests -
+#pragma mark - Test Open / Close Delegate Calls -
 
 - (void)testOpening {
     XCTAssert(!self.willOpenSectionCalled);
@@ -79,6 +81,44 @@
     [self waitForExpectationsWithTimeout:5.0 handler:^(NSError * _Nullable error) { }];
 }
 
+#pragma mark - Test Interaction Delegate Call -
+
+- (void)testOpeningInteraction
+{
+    NSInteger section = 0;
+    
+    // Open section
+    [self waitForHeaderViewInSection:section];
+    [self.tableView toggleSection:section];
+    XCTAssert([self.tableView isSectionOpen:section], @"Section must be open after opening it.");
+    
+    // Close it
+    [self.tableView toggleSection:section];
+    
+    // Now try opening again
+    self.canInteractWithHeaderAtSection = NO;
+    [self.tableView toggleSection:section];
+    XCTAssert(![self.tableView isSectionOpen:section], @"Section must be still closed after turning off interaction.");
+}
+
+- (void)testClosingInteraction
+{
+    NSInteger section = 0;
+    
+    // Test if section is closed
+    [self waitForHeaderViewInSection:section];
+    XCTAssert(![self.tableView isSectionOpen:section], @"Section must be closed at the start");
+    
+    // Open it
+    [self.tableView toggleSection:section];
+    XCTAssert([self.tableView isSectionOpen:section], @"Section must be open.");
+
+    // Now try closing
+    self.canInteractWithHeaderAtSection = NO;
+    [self.tableView toggleSection:section];
+    XCTAssert([self.tableView isSectionOpen:section], @"Section must be be open after turning off interaction.");
+}
+
 
 #pragma mark - <FZAccordionTableViewDelegate> -
 
@@ -104,6 +144,11 @@
     XCTAssertNotNil(tableView);
     XCTAssertNotNil(header);
     self.didCloseSectionCalled = YES;
+}
+
+- (BOOL)tableView:(FZAccordionTableView * _Nonnull)tableView canInteractWithHeaderAtSection:(NSInteger)section
+{
+    return self.canInteractWithHeaderAtSection;
 }
 
 @end
