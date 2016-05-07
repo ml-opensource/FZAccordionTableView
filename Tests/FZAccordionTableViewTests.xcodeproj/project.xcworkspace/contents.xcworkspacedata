@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FZAccordionTableViewTests.xcodeproj">
+      location = "self:/Users/kris/Documents/Projects/FZAccordionTableView/Tests/Testing_Example/FZAccordionTableViewTests.xcodeproj">
    </FileRef>
 </Workspace>

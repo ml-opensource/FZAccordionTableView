@@ -7,28 +7,87 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		010C610E1CB0244500D57F77 /* FZAccordionTableView+Internals.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C610D1CB0244500D57F77 /* FZAccordionTableView+Internals.m */; };
-		015B94341B2E321F00C1E772 /* FZAccordionTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B94331B2E321F00C1E772 /* FZAccordionTableViewTests.m */; };
-		015B943E1B2E333800C1E772 /* FZAccordionTableViewSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B943D1B2E333800C1E772 /* FZAccordionTableViewSimulator.m */; };
-		01AAAAC91B2E4EE8009D3AE3 /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */; };
-		01AAAACE1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAACD1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m */; };
+		0137E0ED1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */; };
+		0137E0F01CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */; };
+		0156F14D1CCD2A6E00E0530C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F33F1B24D94A007B97BD /* Main.storyboard */; };
+		0156F14E1CCD2A7600E0530C /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */; };
+		0156F1581CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156F1571CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m */; };
+		01B0D1B81CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0D1B71CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m */; };
+		01B0D1BA1CD038000012BBCA /* FZAccordionTableViewTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0D1B91CD038000012BBCA /* FZAccordionTableViewTestBase.m */; };
+		01D1F3351B24D94A007B97BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3341B24D94A007B97BD /* main.m */; };
+		01D1F3381B24D94A007B97BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3371B24D94A007B97BD /* AppDelegate.m */; };
+		01D1F33B1B24D94A007B97BD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F33A1B24D94A007B97BD /* MainViewController.m */; };
+		01D1F3411B24D94A007B97BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F33F1B24D94A007B97BD /* Main.storyboard */; };
+		01D1F3431B24D94A007B97BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3421B24D94A007B97BD /* Images.xcassets */; };
+		01D1F3461B24D94A007B97BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3441B24D94A007B97BD /* LaunchScreen.xib */; };
+		01D1F35E1B24D9B2007B97BD /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */; };
+		01D1F3661B24DD61007B97BD /* AccordionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */; };
+		01D1F3681B24DD86007B97BD /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0156F1461CCD219800E0530C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01D1F3271B24D949007B97BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01D1F32E1B24D94A007B97BD;
+			remoteInfo = FZAccordionTableViewTestApp;
+		};
+		0156F15A1CCD2BA400E0530C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01D1F3271B24D949007B97BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01D1F32E1B24D94A007B97BD;
+			remoteInfo = FZAccordionTableViewTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		010C610C1CB0244500D57F77 /* FZAccordionTableView+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FZAccordionTableView+Internals.h"; sourceTree = "<group>"; };
-		010C610D1CB0244500D57F77 /* FZAccordionTableView+Internals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FZAccordionTableView+Internals.m"; sourceTree = "<group>"; };
-		015B942E1B2E321F00C1E772 /* FZAccordionTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FZAccordionTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		015B94321B2E321F00C1E772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		015B94331B2E321F00C1E772 /* FZAccordionTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewTests.m; sourceTree = "<group>"; };
-		015B943C1B2E333800C1E772 /* FZAccordionTableViewSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableViewSimulator.h; sourceTree = "<group>"; };
-		015B943D1B2E333800C1E772 /* FZAccordionTableViewSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewSimulator.m; sourceTree = "<group>"; };
-		01AAAAC71B2E4EE8009D3AE3 /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableView.h; sourceTree = "<group>"; };
-		01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableView.m; sourceTree = "<group>"; };
-		01AAAACD1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewDelegateTests.m; sourceTree = "<group>"; };
+		0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewInitializationTests.m; sourceTree = "<group>"; };
+		0137E0EE1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableViewTestHelpers.h; sourceTree = "<group>"; };
+		0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewTestHelpers.m; sourceTree = "<group>"; };
+		0156F1411CCD219800E0530C /* FZAccordionTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FZAccordionTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewUITests.m; sourceTree = "<group>"; };
+		0156F1451CCD219800E0530C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0156F1551CCD2BA400E0530C /* FZAccordionTableViewUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FZAccordionTableViewUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0156F1571CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewGeneralTests.m; sourceTree = "<group>"; };
+		0156F1591CCD2BA400E0530C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01B0D1B71CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewDelegateTests.m; sourceTree = "<group>"; };
+		01B0D1B91CD038000012BBCA /* FZAccordionTableViewTestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZAccordionTableViewTestBase.m; sourceTree = "<group>"; };
+		01B0D1BB1CD039A10012BBCA /* FZAccordionTableViewTestBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FZAccordionTableViewTestBase.h; sourceTree = "<group>"; };
+		01D1F32F1B24D94A007B97BD /* FZAccordionTableViewTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FZAccordionTableViewTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01D1F3331B24D94A007B97BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01D1F3341B24D94A007B97BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01D1F3361B24D94A007B97BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01D1F3371B24D94A007B97BD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01D1F3391B24D94A007B97BD /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		01D1F33A1B24D94A007B97BD /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		01D1F3401B24D94A007B97BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		01D1F3421B24D94A007B97BD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		01D1F3451B24D94A007B97BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		01D1F35C1B24D9B2007B97BD /* FZAccordionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FZAccordionTableView.h; path = FZAccordionTableView/FZAccordionTableView.h; sourceTree = "<group>"; };
+		01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FZAccordionTableView.m; path = FZAccordionTableView/FZAccordionTableView.m; sourceTree = "<group>"; };
+		01D1F3641B24DD61007B97BD /* AccordionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccordionHeaderView.h; sourceTree = "<group>"; };
+		01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccordionHeaderView.m; sourceTree = "<group>"; };
+		01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccordionHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		015B942B1B2E321F00C1E772 /* Frameworks */ = {
+		0156F13E1CCD219800E0530C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0156F1521CCD2BA400E0530C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01D1F32C1B24D94A007B97BD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,144 +97,350 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		015B94231B2E31E000C1E772 = {
+		0156F1421CCD219800E0530C /* FZAccordionTableViewUITests */ = {
 			isa = PBXGroup;
 			children = (
-				015B94301B2E321F00C1E772 /* FZAccordionTableViewTests */,
-				015B942F1B2E321F00C1E772 /* Products */,
+				0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */,
+				0156F1451CCD219800E0530C /* Info.plist */,
+			);
+			path = FZAccordionTableViewUITests;
+			sourceTree = "<group>";
+		};
+		0156F1561CCD2BA400E0530C /* FZAccordionTableViewUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				01B0D1BC1CD03B690012BBCA /* TestHelpers */,
+				0137E0EC1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m */,
+				0156F1571CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m */,
+				01B0D1B71CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m */,
+				0156F1591CCD2BA400E0530C /* Info.plist */,
+			);
+			path = FZAccordionTableViewUnitTests;
+			sourceTree = "<group>";
+		};
+		01B0D1BC1CD03B690012BBCA /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				0137E0EE1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.h */,
+				0137E0EF1CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m */,
+				01B0D1BB1CD039A10012BBCA /* FZAccordionTableViewTestBase.h */,
+				01B0D1B91CD038000012BBCA /* FZAccordionTableViewTestBase.m */,
+			);
+			name = TestHelpers;
+			sourceTree = "<group>";
+		};
+		01D1F3261B24D949007B97BD = {
+			isa = PBXGroup;
+			children = (
+				01D1F3311B24D94A007B97BD /* FZAccordionTableViewTestApp */,
+				0156F1561CCD2BA400E0530C /* FZAccordionTableViewUnitTests */,
+				0156F1421CCD219800E0530C /* FZAccordionTableViewUITests */,
+				01D1F3301B24D94A007B97BD /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		015B942F1B2E321F00C1E772 /* Products */ = {
+		01D1F3301B24D94A007B97BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				015B942E1B2E321F00C1E772 /* FZAccordionTableViewTests.xctest */,
+				01D1F32F1B24D94A007B97BD /* FZAccordionTableViewTests.app */,
+				0156F1411CCD219800E0530C /* FZAccordionTableViewUITests.xctest */,
+				0156F1551CCD2BA400E0530C /* FZAccordionTableViewUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		015B94301B2E321F00C1E772 /* FZAccordionTableViewTests */ = {
+		01D1F3311B24D94A007B97BD /* FZAccordionTableViewTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				010C610C1CB0244500D57F77 /* FZAccordionTableView+Internals.h */,
-				010C610D1CB0244500D57F77 /* FZAccordionTableView+Internals.m */,
-				015B943C1B2E333800C1E772 /* FZAccordionTableViewSimulator.h */,
-				015B943D1B2E333800C1E772 /* FZAccordionTableViewSimulator.m */,
-				015B94331B2E321F00C1E772 /* FZAccordionTableViewTests.m */,
-				01AAAACD1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m */,
-				015B94311B2E321F00C1E772 /* Supporting Files */,
-				015B94381B2E325200C1E772 /* FZAccordionTableView */,
+				01D1F3361B24D94A007B97BD /* AppDelegate.h */,
+				01D1F3371B24D94A007B97BD /* AppDelegate.m */,
+				01D1F3391B24D94A007B97BD /* MainViewController.h */,
+				01D1F33A1B24D94A007B97BD /* MainViewController.m */,
+				01D1F3641B24DD61007B97BD /* AccordionHeaderView.h */,
+				01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */,
+				01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */,
+				01D1F33F1B24D94A007B97BD /* Main.storyboard */,
+				01D1F3421B24D94A007B97BD /* Images.xcassets */,
+				01D1F3441B24D94A007B97BD /* LaunchScreen.xib */,
+				01D1F35B1B24D991007B97BD /* FZAccordionTableView */,
+				01D1F3321B24D94A007B97BD /* Supporting Files */,
 			);
-			path = FZAccordionTableViewTests;
+			path = FZAccordionTableViewTestApp;
 			sourceTree = "<group>";
 		};
-		015B94311B2E321F00C1E772 /* Supporting Files */ = {
+		01D1F3321B24D94A007B97BD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				015B94321B2E321F00C1E772 /* Info.plist */,
+				01D1F3331B24D94A007B97BD /* Info.plist */,
+				01D1F3341B24D94A007B97BD /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		015B94381B2E325200C1E772 /* FZAccordionTableView */ = {
+		01D1F35B1B24D991007B97BD /* FZAccordionTableView */ = {
 			isa = PBXGroup;
 			children = (
-				01AAAAC71B2E4EE8009D3AE3 /* FZAccordionTableView.h */,
-				01AAAAC81B2E4EE8009D3AE3 /* FZAccordionTableView.m */,
+				01D1F35C1B24D9B2007B97BD /* FZAccordionTableView.h */,
+				01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */,
 			);
 			name = FZAccordionTableView;
-			path = ../../FZAccordionTableView;
+			path = ../../../FZAccordionTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		015B942D1B2E321F00C1E772 /* FZAccordionTableViewTests */ = {
+		0156F1401CCD219800E0530C /* FZAccordionTableViewUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 015B94351B2E321F00C1E772 /* Build configuration list for PBXNativeTarget "FZAccordionTableViewTests" */;
+			buildConfigurationList = 0156F1481CCD219800E0530C /* Build configuration list for PBXNativeTarget "FZAccordionTableViewUITests" */;
 			buildPhases = (
-				015B942A1B2E321F00C1E772 /* Sources */,
-				015B942B1B2E321F00C1E772 /* Frameworks */,
-				015B942C1B2E321F00C1E772 /* Resources */,
+				0156F13D1CCD219800E0530C /* Sources */,
+				0156F13E1CCD219800E0530C /* Frameworks */,
+				0156F13F1CCD219800E0530C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0156F1471CCD219800E0530C /* PBXTargetDependency */,
+			);
+			name = FZAccordionTableViewUITests;
+			productName = FZAccordionTableViewUITests;
+			productReference = 0156F1411CCD219800E0530C /* FZAccordionTableViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		0156F1541CCD2BA400E0530C /* FZAccordionTableViewUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0156F15C1CCD2BA400E0530C /* Build configuration list for PBXNativeTarget "FZAccordionTableViewUnitTests" */;
+			buildPhases = (
+				0156F1511CCD2BA400E0530C /* Sources */,
+				0156F1521CCD2BA400E0530C /* Frameworks */,
+				0156F1531CCD2BA400E0530C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0156F15B1CCD2BA400E0530C /* PBXTargetDependency */,
+			);
+			name = FZAccordionTableViewUnitTests;
+			productName = FZAccordionTableViewUnitTests;
+			productReference = 0156F1551CCD2BA400E0530C /* FZAccordionTableViewUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		01D1F32E1B24D94A007B97BD /* FZAccordionTableViewTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01D1F3551B24D94A007B97BD /* Build configuration list for PBXNativeTarget "FZAccordionTableViewTestApp" */;
+			buildPhases = (
+				01D1F32B1B24D94A007B97BD /* Sources */,
+				01D1F32C1B24D94A007B97BD /* Frameworks */,
+				01D1F32D1B24D94A007B97BD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = FZAccordionTableViewTests;
-			productName = FZAccordionTableViewTests;
-			productReference = 015B942E1B2E321F00C1E772 /* FZAccordionTableViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = FZAccordionTableViewTestApp;
+			productName = FZAccordionTableViewExample;
+			productReference = 01D1F32F1B24D94A007B97BD /* FZAccordionTableViewTests.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		015B94241B2E31E000C1E772 /* Project object */ = {
+		01D1F3271B24D949007B97BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Fuzz;
 				TargetAttributes = {
-					015B942D1B2E321F00C1E772 = {
+					0156F1401CCD219800E0530C = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 01D1F32E1B24D94A007B97BD;
+					};
+					0156F1541CCD2BA400E0530C = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 01D1F32E1B24D94A007B97BD;
+					};
+					01D1F32E1B24D94A007B97BD = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
 			};
-			buildConfigurationList = 015B94271B2E31E000C1E772 /* Build configuration list for PBXProject "FZAccordionTableViewTests" */;
+			buildConfigurationList = 01D1F32A1B24D949007B97BD /* Build configuration list for PBXProject "FZAccordionTableViewTests" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 015B94231B2E31E000C1E772;
-			productRefGroup = 015B942F1B2E321F00C1E772 /* Products */;
+			mainGroup = 01D1F3261B24D949007B97BD;
+			productRefGroup = 01D1F3301B24D94A007B97BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				015B942D1B2E321F00C1E772 /* FZAccordionTableViewTests */,
+				01D1F32E1B24D94A007B97BD /* FZAccordionTableViewTestApp */,
+				0156F1401CCD219800E0530C /* FZAccordionTableViewUITests */,
+				0156F1541CCD2BA400E0530C /* FZAccordionTableViewUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		015B942C1B2E321F00C1E772 /* Resources */ = {
+		0156F13F1CCD219800E0530C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0156F14E1CCD2A7600E0530C /* AccordionHeaderView.xib in Resources */,
+				0156F14D1CCD2A6E00E0530C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0156F1531CCD2BA400E0530C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01D1F32D1B24D94A007B97BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01D1F3411B24D94A007B97BD /* Main.storyboard in Resources */,
+				01D1F3461B24D94A007B97BD /* LaunchScreen.xib in Resources */,
+				01D1F3681B24DD86007B97BD /* AccordionHeaderView.xib in Resources */,
+				01D1F3431B24D94A007B97BD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		015B942A1B2E321F00C1E772 /* Sources */ = {
+		0156F13D1CCD219800E0530C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				010C610E1CB0244500D57F77 /* FZAccordionTableView+Internals.m in Sources */,
-				015B943E1B2E333800C1E772 /* FZAccordionTableViewSimulator.m in Sources */,
-				01AAAACE1B2E4F55009D3AE3 /* FZAccordionTableViewDelegateTests.m in Sources */,
-				01AAAAC91B2E4EE8009D3AE3 /* FZAccordionTableView.m in Sources */,
-				015B94341B2E321F00C1E772 /* FZAccordionTableViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0156F1511CCD2BA400E0530C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0137E0F01CCDAF0400C2CFAC /* FZAccordionTableViewTestHelpers.m in Sources */,
+				01B0D1BA1CD038000012BBCA /* FZAccordionTableViewTestBase.m in Sources */,
+				01B0D1B81CD037BC0012BBCA /* FZAccordionTableViewDelegateTests.m in Sources */,
+				0137E0ED1CCDAED200C2CFAC /* FZAccordionTableViewInitializationTests.m in Sources */,
+				0156F1581CCD2BA400E0530C /* FZAccordionTableViewGeneralTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01D1F32B1B24D94A007B97BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01D1F35E1B24D9B2007B97BD /* FZAccordionTableView.m in Sources */,
+				01D1F3661B24DD61007B97BD /* AccordionHeaderView.m in Sources */,
+				01D1F3381B24D94A007B97BD /* AppDelegate.m in Sources */,
+				01D1F33B1B24D94A007B97BD /* MainViewController.m in Sources */,
+				01D1F3351B24D94A007B97BD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0156F1471CCD219800E0530C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01D1F32E1B24D94A007B97BD /* FZAccordionTableViewTestApp */;
+			targetProxy = 0156F1461CCD219800E0530C /* PBXContainerItemProxy */;
+		};
+		0156F15B1CCD2BA400E0530C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01D1F32E1B24D94A007B97BD /* FZAccordionTableViewTestApp */;
+			targetProxy = 0156F15A1CCD2BA400E0530C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		01D1F33F1B24D94A007B97BD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01D1F3401B24D94A007B97BD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		01D1F3441B24D94A007B97BD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01D1F3451B24D94A007B97BD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		015B94281B2E31E000C1E772 /* Debug */ = {
+		0156F1491CCD219800E0530C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = FZAccordionTableViewUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FZAccordionTableViewTestApp;
 			};
 			name = Debug;
 		};
-		015B94291B2E31E000C1E772 /* Release */ = {
+		0156F14A1CCD219800E0530C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = FZAccordionTableViewUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FZAccordionTableViewTestApp;
 			};
 			name = Release;
 		};
-		015B94361B2E321F00C1E772 /* Debug */ = {
+		0156F15D1CCD2BA400E0530C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = FZAccordionTableViewUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FZAccordionTableViewTests.app/FZAccordionTableViewTests";
+			};
+			name = Debug;
+		};
+		0156F15E1CCD2BA400E0530C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = FZAccordionTableViewUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FZAccordionTableViewTests.app/FZAccordionTableViewTests";
+			};
+			name = Release;
+		};
+		01D1F3531B24D94A007B97BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -192,13 +457,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -214,17 +476,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = FZAccordionTableViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		015B94371B2E321F00C1E772 /* Release */ = {
+		01D1F3541B24D94A007B97BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,14 +500,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -257,38 +513,79 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = FZAccordionTableViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01D1F3561B24D94A007B97BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FZAccordionTableViewTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = FZAccordionTableViewTests;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		01D1F3571B24D94A007B97BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FZAccordionTableViewTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = FZAccordionTableViewTests;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		015B94271B2E31E000C1E772 /* Build configuration list for PBXProject "FZAccordionTableViewTests" */ = {
+		0156F1481CCD219800E0530C /* Build configuration list for PBXNativeTarget "FZAccordionTableViewUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				015B94281B2E31E000C1E772 /* Debug */,
-				015B94291B2E31E000C1E772 /* Release */,
+				0156F1491CCD219800E0530C /* Debug */,
+				0156F14A1CCD219800E0530C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		015B94351B2E321F00C1E772 /* Build configuration list for PBXNativeTarget "FZAccordionTableViewTests" */ = {
+		0156F15C1CCD2BA400E0530C /* Build configuration list for PBXNativeTarget "FZAccordionTableViewUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				015B94361B2E321F00C1E772 /* Debug */,
-				015B94371B2E321F00C1E772 /* Release */,
+				0156F15D1CCD2BA400E0530C /* Debug */,
+				0156F15E1CCD2BA400E0530C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01D1F32A1B24D949007B97BD /* Build configuration list for PBXProject "FZAccordionTableViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01D1F3531B24D94A007B97BD /* Debug */,
+				01D1F3541B24D94A007B97BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01D1F3551B24D94A007B97BD /* Build configuration list for PBXNativeTarget "FZAccordionTableViewTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01D1F3561B24D94A007B97BD /* Debug */,
+				01D1F3571B24D94A007B97BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 015B94241B2E31E000C1E772 /* Project object */;
+	rootObject = 01D1F3271B24D949007B97BD /* Project object */;
 }
