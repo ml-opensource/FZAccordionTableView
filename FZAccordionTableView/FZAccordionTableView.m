@@ -30,24 +30,6 @@
 #import <objc/runtime.h>
 
 #pragma mark -
-#pragma mark - FZAccordionTableViewSectionInfo
-#pragma mark -
-
-@interface FZAccordionTableViewSectionInfo : NSObject
-@property (nonatomic, getter=isOpen) BOOL open;
-@property (nonatomic) NSInteger numberOfRows;
-@end
-
-@implementation FZAccordionTableViewSectionInfo
-- (instancetype)initWithNumberOfRows:(NSInteger)numberOfRows {
-    if (self = [super init]) {
-        _numberOfRows = numberOfRows;
-    }
-    return self;
-}
-@end
-
-#pragma mark -
 #pragma mark - FZAccordionTableViewHeaderView
 #pragma mark -
 
@@ -87,6 +69,24 @@
     [self.delegate tappedHeaderView:self];
 }
 
+@end
+
+#pragma mark -
+#pragma mark - FZAccordionTableViewSectionInfo
+#pragma mark -
+
+@interface FZAccordionTableViewSectionInfo : NSObject
+@property (nonatomic, getter=isOpen) BOOL open;
+@property (nonatomic) NSInteger numberOfRows;
+@end
+
+@implementation FZAccordionTableViewSectionInfo
+- (instancetype)initWithNumberOfRows:(NSInteger)numberOfRows {
+    if (self = [super init]) {
+        _numberOfRows = numberOfRows;
+    }
+    return self;
+}
 @end
 
 #pragma mark -
@@ -130,64 +130,12 @@
     _keepOneSectionOpen = NO;
 }
 
-#pragma mark - Helper methods -
+#pragma mark - Override Setters -
 
-- (BOOL)isSectionOpen:(NSInteger)section {
-    return [self.sectionInfos[section] isOpen];
-}
-
-- (void)markSection:(NSInteger)section open:(BOOL)open {
-    [self.sectionInfos[section] setOpen:open];
-}
-
-- (NSArray *)getIndexPathsForSection:(NSInteger)section {
-    NSInteger numOfRows = [self.sectionInfos[section] numberOfRows];
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    for (int row = 0; row < numOfRows; row++) {
-        [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];
-    }
-    return indexPaths;
-}
-
-- (void)toggleSection:(NSInteger)section { 
-    FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
-    [self tappedHeaderView:headerView];
-}
-
-- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
-    
-    NSInteger section = NSNotFound;
-    NSInteger minSection = 0;
-    NSInteger maxSection = self.numberOfSections;
-    
-    CGRect headerViewFrame = headerView.frame;
-    CGRect compareHeaderViewFrame;
-    
-    while (minSection <= maxSection) {
-        NSInteger middleSection = (minSection+maxSection)/2;
-        compareHeaderViewFrame = [self rectForHeaderInSection:middleSection];
-        if (CGRectEqualToRect(headerViewFrame, compareHeaderViewFrame)) {
-            section = middleSection;
-            break;
-        }
-        else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
-            minSection = middleSection+1;
-        }
-        else {
-            maxSection = middleSection-1;
-            section = maxSection; // Occurs when headerView sticks to the top
-        }
-    }
-    
-    return section;
-}
-
-- (BOOL)canInteractWithHeaderAtSection:(NSInteger)section {
-    BOOL canInteractWithHeader = YES;
-    if ([self.delegate respondsToSelector:@selector(tableView:canInteractWithHeaderAtSection:)]) {
-        canInteractWithHeader = [self.subclassDelegate tableView:self canInteractWithHeaderAtSection:section];
-    }
-    return canInteractWithHeader;
+- (void)setInitialOpenSections:(NSSet *)initialOpenedSections {
+    NSAssert(self.sectionInfos.count == 0, @"'initialOpenedSections' MUST be set before the tableView has started loading data.");
+    _initialOpenSections = initialOpenedSections;
+    _mutableInitialOpenSections = [initialOpenedSections mutableCopy];
 }
 
 #pragma mark - UITableView Overrides -
@@ -237,15 +185,69 @@
     return [super respondsToSelector:aSelector] || [self.subclassDelegate respondsToSelector:aSelector] || [self.subclassDataSource respondsToSelector:aSelector];
 }
 
-#pragma mark - Override Setters -
+#pragma mark - Public Helper Methods -
 
-- (void)setInitialOpenSections:(NSSet *)initialOpenedSections {
-    NSAssert(self.sectionInfos.count == 0, @"'initialOpenedSections' MUST be set before the tableView has started loading data.");
-    _initialOpenSections = initialOpenedSections;
-    _mutableInitialOpenSections = [initialOpenedSections mutableCopy];
+- (BOOL)isSectionOpen:(NSInteger)section {
+    return [self.sectionInfos[section] isOpen];
 }
 
-#pragma mark - FZAccordionTableViewHeaderViewDelegate -
+- (void)toggleSection:(NSInteger)section { 
+    FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
+    [self tappedHeaderView:headerView];
+}
+
+- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
+    
+    NSInteger section = NSNotFound;
+    NSInteger minSection = 0;
+    NSInteger maxSection = self.numberOfSections;
+    
+    CGRect headerViewFrame = headerView.frame;
+    CGRect compareHeaderViewFrame;
+    
+    while (minSection <= maxSection) {
+        NSInteger middleSection = (minSection+maxSection)/2;
+        compareHeaderViewFrame = [self rectForHeaderInSection:middleSection];
+        if (CGRectEqualToRect(headerViewFrame, compareHeaderViewFrame)) {
+            section = middleSection;
+            break;
+        }
+        else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
+            minSection = middleSection+1;
+        }
+        else {
+            maxSection = middleSection-1;
+            section = maxSection; // Occurs when headerView sticks to the top
+        }
+    }
+    
+    return section;
+}
+
+#pragma mark - Private Utility Helpers -
+
+- (void)markSection:(NSInteger)section open:(BOOL)open {
+    [self.sectionInfos[section] setOpen:open];
+}
+
+- (NSArray *)getIndexPathsForSection:(NSInteger)section {
+    NSInteger numOfRows = [self.sectionInfos[section] numberOfRows];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (int row = 0; row < numOfRows; row++) {
+        [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:section]];
+    }
+    return indexPaths;
+}
+
+- (BOOL)canInteractWithHeaderAtSection:(NSInteger)section {
+    BOOL canInteractWithHeader = YES;
+    if ([self.delegate respondsToSelector:@selector(tableView:canInteractWithHeaderAtSection:)]) {
+        canInteractWithHeader = [self.subclassDelegate tableView:self canInteractWithHeaderAtSection:section];
+    }
+    return canInteractWithHeader;
+}
+
+#pragma mark - <FZAccordionTableViewHeaderViewDelegate> -
 
 - (void)tappedHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
     NSParameterAssert(sectionHeaderView);
@@ -285,11 +287,43 @@
     
     // Auto-collapse the rest of the opened sections
     if (!self.allowMultipleSectionsOpen && !openSection) {
-        [self autoCollapseAllSectionsExceptSection:section];
+        [self closeAllSectionsExcept:section];
     }
     
     [self endUpdates];
 }
+
+- (void)closeAllSectionsExcept:(NSInteger)section {
+    // Get all of the sections that we need to close
+    NSMutableSet *sectionsToClose = [[NSMutableSet alloc] init];
+    for (NSInteger i = 0; i < self.numberOfSections; i++) {
+        FZAccordionTableViewSectionInfo *sectionInfo = self.sectionInfos[i];
+        if (section != i && sectionInfo.isOpen) {
+            [sectionsToClose addObject:@(i)];
+        }
+    }
+    
+    // Close the found sections
+    for (NSNumber *sectionToClose in sectionsToClose) {
+        
+        // Change animations based off which sections are closed
+        UITableViewRowAnimation closeAnimation = UITableViewRowAnimationTop;
+        if (section < sectionToClose.integerValue) {
+            closeAnimation = UITableViewRowAnimationBottom;
+        }
+        if (self.enableAnimationFix) {
+            if (!self.allowsMultipleSelection &&
+                (sectionToClose.integerValue == self.sectionInfos.count - 1 ||
+                 sectionToClose.integerValue == self.sectionInfos.count - 2)) {
+                    closeAnimation = UITableViewRowAnimationFade;
+                }
+        }
+        
+        [self closeSection:sectionToClose.integerValue withHeaderView:(FZAccordionTableViewHeaderView *)[self headerViewForSection:sectionToClose.integerValue] rowAnimation:closeAnimation];
+    }
+}
+
+#pragma mark - Open / Closing
 
 - (void)openSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
     if (![self canInteractWithHeaderAtSection:section]) {
@@ -352,36 +386,6 @@
     }];
     [self deleteRowsAtIndexPaths:indexPathsToModify withRowAnimation:UITableViewRowAnimationTop];
     [self endUpdates];
-}
-
-- (void)autoCollapseAllSectionsExceptSection:(NSInteger)section {
-    // Get all of the sections that we need to close
-    NSMutableSet *sectionsToClose = [[NSMutableSet alloc] init];
-    for (NSInteger i = 0; i < self.numberOfSections; i++) {
-        FZAccordionTableViewSectionInfo *sectionInfo = self.sectionInfos[i];
-        if (section != i && sectionInfo.isOpen) {
-            [sectionsToClose addObject:@(i)];
-        }
-    }
-    
-    // Close the found sections
-    for (NSNumber *sectionToClose in sectionsToClose) {
-       
-        // Change animations based off which sections are closed
-        UITableViewRowAnimation closeAnimation = UITableViewRowAnimationTop;
-        if (section < sectionToClose.integerValue) {
-            closeAnimation = UITableViewRowAnimationBottom;
-        }
-        if (self.enableAnimationFix) {
-            if (!self.allowsMultipleSelection &&
-                (sectionToClose.integerValue == self.sectionInfos.count - 1 ||
-                 sectionToClose.integerValue == self.sectionInfos.count - 2)) {
-                    closeAnimation = UITableViewRowAnimationFade;
-                }
-        }
-        
-        [self closeSection:sectionToClose.integerValue withHeaderView:(FZAccordionTableViewHeaderView *)[self headerViewForSection:sectionToClose.integerValue] rowAnimation:closeAnimation];
-    }
 }
 
 #pragma mark - <UITableViewDataSource> -
