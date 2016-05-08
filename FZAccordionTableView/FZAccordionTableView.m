@@ -171,9 +171,11 @@
 }
 
 - (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
+#ifdef DEBUG
     for (NSIndexPath *indexPath in indexPaths) {
         NSAssert([self isSectionOpen:indexPath.section], @"Can't insert rows in a closed section: %d.", (int)indexPath.section);
     }
+#endif
     [super insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
