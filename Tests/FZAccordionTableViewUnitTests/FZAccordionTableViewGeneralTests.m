@@ -203,6 +203,32 @@
     XCTAssert(initialSectionCount+1 == self.tableView.numberOfSections, @"The section counts should match up.");
 }
 
+- (void)testAddingSectionWhileOtherSectionsAreOpen {
+    
+    // First, open all of the sections
+    self.tableView.allowMultipleSectionsOpen = YES;
+    for (NSInteger i = 0; i < [self.tableView numberOfSections];  i++) {
+        [self waitForHeaderViewInSection:i];
+        [self.tableView toggleSection:i];
+        
+        XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
+    }
+    
+    NSInteger section = 1;
+    NSInteger numberOfRows = 33;
+    NSInteger initialSectionCount = self.mainViewController.sections.count;
+    
+    // Add data into data source
+    [self.mainViewController.sections insertObject:@(numberOfRows) atIndex:section];
+    
+    // Add to tableview
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:section];
+    [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+    
+    XCTAssert([self.mainViewController.sections[section] integerValue] == [self.tableView.sectionInfos[section] numberOfRows], @"The data source section rows should match up.");
+    XCTAssert(initialSectionCount+1 == self.tableView.numberOfSections, @"The section counts should match up.");
+}
+
 #pragma mark - Delete Section -
 
 - (void)testDeleteClosedSection {

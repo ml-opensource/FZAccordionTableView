@@ -150,6 +150,15 @@
     super.dataSource = self;
 }
 
+- (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+    [sections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * _Nonnull stop) {
+       FZAccordionTableViewSectionInfo *sectionInfo = [[FZAccordionTableViewSectionInfo alloc] initWithNumberOfRows:0];
+        [self.sectionInfos insertObject:sectionInfo atIndex:section];
+    }];
+    
+    [super insertSections:sections withRowAnimation:animation];
+}
+
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
     
     // Remove section info in reverse order to prevent array from
@@ -431,7 +440,11 @@
     
     [self.sectionInfos[section] setNumberOfRows:numOfRows];
     
-    return ([self isSectionOpen:section]) ? numOfRows : 0;
+    if (![self isSectionOpen:section]) {
+        numOfRows = 0;
+    }
+    
+    return numOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
