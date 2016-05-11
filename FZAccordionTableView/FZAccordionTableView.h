@@ -142,4 +142,6 @@
 - (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 - (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 
+-(void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate;
+-(void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)scrollView;
 @end
