@@ -90,10 +90,21 @@
 @end
 
 #pragma mark -
+#pragma mark - FZAccordionTableViewDelegateProxy
+#pragma mark -
+
+@interface FZAccordionTableViewDelegateProxy : NSObject <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, weak, readonly) FZAccordionTableView *accordionTableView;
+- (instancetype)initWithAccordionTableView:(FZAccordionTableView *)accordionTableView;
+@end
+
+#pragma mark -
 #pragma mark - FZAccordionTableView
 #pragma mark - 
 
-@interface FZAccordionTableView() <UITableViewDataSource, UITableViewDelegate, FZAccordionTableViewHeaderViewDelegate>
+@interface FZAccordionTableView() <FZAccordionTableViewHeaderViewDelegate>
+
+@property (nonatomic, strong) FZAccordionTableViewDelegateProxy *delegateProxy;
 
 @property (weak, nonatomic) id<UITableViewDelegate, FZAccordionTableViewDelegate> subclassDelegate;
 @property (weak, nonatomic) id<UITableViewDataSource> subclassDataSource;
@@ -128,6 +139,7 @@
     _allowMultipleSectionsOpen = NO;
     _enableAnimationFix = NO;
     _keepOneSectionOpen = NO;
+    _delegateProxy = [[FZAccordionTableViewDelegateProxy alloc] initWithAccordionTableView:self];
 }
 
 #pragma mark - Override Setters -
@@ -142,12 +154,12 @@
 
 - (void)setDelegate:(id<UITableViewDelegate, FZAccordionTableViewDelegate>)delegate {
     self.subclassDelegate = delegate;
-    super.delegate = self;
+    super.delegate = self.delegateProxy;
 }
 
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource {
     self.subclassDataSource = dataSource;
-    super.dataSource = self;
+    super.dataSource = self.delegateProxy;
 }
 
 - (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
@@ -177,23 +189,6 @@
     }
 #endif
     [super insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
-}
-
-#pragma mark - Forwarding handling -
-
-- (id)forwardingTargetForSelector:(SEL)aSelector {
-    if ([self.subclassDataSource respondsToSelector:aSelector]) {
-        return self.subclassDataSource;
-    }
-    else if ([self.subclassDelegate respondsToSelector:aSelector]) {
-        return self.subclassDelegate;
-    }
-    
-    return [super forwardingTargetForSelector:aSelector];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    return [super respondsToSelector:aSelector] || [self.subclassDelegate respondsToSelector:aSelector] || [self.subclassDataSource respondsToSelector:aSelector];
 }
 
 #pragma mark - Public Helper Methods -
@@ -399,50 +394,83 @@
     [self endUpdates];
 }
 
+@end
+
+#pragma mark -
+#pragma mark - FZAccordionTableViewDelegateProxy
+#pragma mark -
+
+@implementation FZAccordionTableViewDelegateProxy
+
+- (instancetype)initWithAccordionTableView:(FZAccordionTableView *)accordionTableView
+{
+    if (self = [super init]) {
+        _accordionTableView = accordionTableView;
+    }
+    return self;
+}
+
+#pragma mark - Forwarding handling -
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    if ([self.accordionTableView.subclassDataSource respondsToSelector:aSelector]) {
+        return self.accordionTableView.subclassDataSource;
+    }
+    else if ([self.accordionTableView.subclassDelegate respondsToSelector:aSelector]) {
+        return self.accordionTableView.subclassDelegate;
+    }
+    
+    return [super forwardingTargetForSelector:aSelector];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [super respondsToSelector:aSelector] || [self.accordionTableView.subclassDelegate respondsToSelector:aSelector] || [self.accordionTableView.subclassDataSource respondsToSelector:aSelector];
+}
+
 #pragma mark - <UITableViewDataSource> -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    self.numberOfSectionsCalled = YES;
+    self.accordionTableView.numberOfSectionsCalled = YES;
     
     NSInteger numOfSections = 1; // Default value for UITableView is 1
     
-    if ([self.subclassDataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
-        numOfSections = [self.subclassDataSource numberOfSectionsInTableView:tableView];
+    if ([self.accordionTableView.subclassDataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+        numOfSections = [self.accordionTableView.subclassDataSource numberOfSectionsInTableView:tableView];
     }
     
     // Create 'FZAccordionTableViewSectionInfo' objects to represent each section
-    for (NSInteger i = self.sectionInfos.count; i < numOfSections; i++) {
+    for (NSInteger i = self.accordionTableView.sectionInfos.count; i < numOfSections; i++) {
         FZAccordionTableViewSectionInfo *section = [[FZAccordionTableViewSectionInfo alloc] initWithNumberOfRows:0];
         
         // Account for any initial open sections
-        if (self.mutableInitialOpenSections.count > 0 && [self.mutableInitialOpenSections containsObject:@(i)]) {
+        if (self.accordionTableView.mutableInitialOpenSections.count > 0 && [self.accordionTableView.mutableInitialOpenSections containsObject:@(i)]) {
             section.open = YES;
-            [self.mutableInitialOpenSections removeObject:@(i)];
+            [self.accordionTableView.mutableInitialOpenSections removeObject:@(i)];
         }
         
-        [self.sectionInfos addObject:section];
+        [self.accordionTableView.sectionInfos addObject:section];
     }
     
     return numOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (!self.numberOfSectionsCalled) {
+    if (!self.accordionTableView.numberOfSectionsCalled) {
         // There is some potential UITableView bug where
         // 'tableView:numberOfRowsInSection:' gets called before
         // 'numberOfSectionsInTableView' gets called.
         return 0;
     }
-
+    
     NSInteger numOfRows = 0;
     
-    if ([self.subclassDataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
-        numOfRows = [self.subclassDataSource tableView:tableView numberOfRowsInSection:section];;
+    if ([self.accordionTableView.subclassDataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
+        numOfRows = [self.accordionTableView.subclassDataSource tableView:tableView numberOfRowsInSection:section];;
     }
     
-    [self.sectionInfos[section] setNumberOfRows:numOfRows];
+    [self.accordionTableView.sectionInfos[section] setNumberOfRows:numOfRows];
     
-    if (![self isSectionOpen:section]) {
+    if (![self.accordionTableView isSectionOpen:section]) {
         numOfRows = 0;
     }
     
@@ -451,19 +479,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // We implement this purely to satisfy the Xcode UITableViewDataSource warning
-    return [self.subclassDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+    return [self.accordionTableView.subclassDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
 }
- 
+
 #pragma mark - <UITableViewDelegate> -
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
     
     FZAccordionTableViewHeaderView *headerView = nil;
     
-    if ([self.subclassDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
-        headerView = (FZAccordionTableViewHeaderView *)[self.subclassDelegate tableView:tableView viewForHeaderInSection:section];
+    if ([self.accordionTableView.subclassDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
+        headerView = (FZAccordionTableViewHeaderView *)[self.accordionTableView.subclassDelegate tableView:tableView viewForHeaderInSection:section];
         if ([headerView isKindOfClass:[FZAccordionTableViewHeaderView class]]) {
-            headerView.delegate = self;
+            headerView.delegate = self.accordionTableView;
         }
     }
     
