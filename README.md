@@ -46,7 +46,7 @@ The module is made to be very easy to use and no modifications are necessary to 
 ## How To Use?
 ### Steps:
 
-1. Add to Podfile: `pod 'FZAccordionTableView', '~> 0.2.0'`
+1. Add to Podfile: `pod 'FZAccordionTableView', '~> 0.2.1'`
 2. Subclass your `UITableView` with `FZAccordionTableView`
 3. Subclass your `UITableViewHeaderFooterView` with `FZAccordionTableViewHeaderView`
 
