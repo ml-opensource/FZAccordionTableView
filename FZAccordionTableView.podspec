@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'FZAccordionTableView'
-  s.version      = '0.2.0'
-  s.source       = { :git => 'https://github.com/fuzz-productions/FZAccordionTableView.git', :tag => '0.2.0' }
+  s.version      = '0.2.1'
+  s.source       = { :git => 'https://github.com/fuzz-productions/FZAccordionTableView.git', :tag => '0.2.1' }
   s.source_files = 'FZAccordionTableView/*.{h,m}'
   s.platform     = :ios, '7.0'
   s.requires_arc = true
