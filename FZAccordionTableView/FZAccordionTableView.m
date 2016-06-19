@@ -206,7 +206,7 @@
     
     NSInteger section = NSNotFound;
     NSInteger minSection = 0;
-    NSInteger maxSection = self.numberOfSections;
+    NSInteger maxSection = self.numberOfSections-1;
     
     CGRect headerViewFrame = headerView.frame;
     CGRect compareHeaderViewFrame;
@@ -220,10 +220,10 @@
         }
         else if (headerViewFrame.origin.y > compareHeaderViewFrame.origin.y) {
             minSection = middleSection+1;
+            section = middleSection; // Occurs when headerView sticks to the top
         }
         else {
             maxSection = middleSection-1;
-            section = maxSection; // Occurs when headerView sticks to the top
         }
     }
     
