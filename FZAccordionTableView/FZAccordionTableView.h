@@ -32,8 +32,10 @@
 
 /*!
  @desc  The section which this header view is part of.
+ 
+        Deprecated. Use sectionForHeaderView: instead.
  */
-@property (nonatomic, readonly) NSInteger section;
+@property (nonatomic, readonly) NSInteger section DEPRECATED_MSG_ATTRIBUTE("Use sectionForHeaderView: instead.");
 
 @end
 
@@ -57,8 +59,7 @@
  
         If set to NO, all sections can be closed.
  
-        Note that this does NOT influence 'sectionsAlwaysOpen.' Also,
-        use 'sectionsInitiallyOpen' to specify which section should be 
+        Use 'sectionsInitiallyOpen' to specify which section should be
         open at the start, otherwise, all sections will be closed at 
         the start even if the property is set to YES.
  
@@ -69,15 +70,19 @@
 /*!
  @desc  Defines which sections should be open the first time the
         table is shown.
+ 
+        Must be set before any data is loaded.
  */
-@property (strong, nonatomic) NSSet *initialOpenSections;
+@property (strong, nonatomic, nullable) NSSet <NSNumber *> *initialOpenSections;
 
 /*!
  @desc  Defines which sections will always be open.
         The headers of these sections will not call the
         FZAccordionTableViewDelegate methods.
+ 
+        Deprecated. Use tableView:canInteractWithHeaderAtSection: instead.
  */
-@property (strong, nonatomic) NSSet *sectionsAlwaysOpen;
+@property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen DEPRECATED_MSG_ATTRIBUTE("Use tableView:canInteractWithHeaderAtSection: instead.");
 
 /*!
  @desc  Enables the fading of cells for the last two rows of the
@@ -104,16 +109,37 @@
  */
 - (void)toggleSection:(NSInteger)section;
 
+/*!
+ @desc  Finds the section of a header view.
+ 
+ @param headerView The header view whose section must be found.
+ 
+ @returns The section of the header view.
+ */
+- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView * _Nonnull)headerView;
+
 @end
 
 @protocol FZAccordionTableViewDelegate <NSObject>
 
 @optional
 
-- (void)tableView:(FZAccordionTableView *)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
+/**
+ @desc  Implement to respond to which sections can be interacted with.
+ 
+        If NO is returned for a section, the section can neither be opened or closed. 
+        It stays in it's initial state no matter what.
+ 
+        Use 'initialOpenSections' to mark a section open from the start.
+ 
+        The default return value is YES.
+ */
+- (BOOL)tableView:(FZAccordionTableView * _Nonnull)tableView canInteractWithHeaderAtSection:(NSInteger)section;
 
-- (void)tableView:(FZAccordionTableView *)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
 
 @end

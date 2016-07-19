@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="U7y-7U-Yb9" customClass="AccordionHeaderView" customModule="FZAccordionTableViewExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-6J-KQb" userLabel="contentView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Deb-5q-lyA">
+                            <rect key="frame" x="264.5" y="10" width="70.5" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOQ-aQ-GiF">
+                            <rect key="frame" x="0.0" y="43" width="600" height="1"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="fhD-m8-a5d"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="Deb-5q-lyA" secondAttribute="centerX" constant="0.5" id="Hxu-cb-v31"/>
+                        <constraint firstAttribute="centerY" secondItem="Deb-5q-lyA" secondAttribute="centerY" id="Vy3-fp-MWt"/>
+                        <constraint firstItem="FOQ-aQ-GiF" firstAttribute="leading" secondItem="Pmd-6J-KQb" secondAttribute="leading" id="Yi3-YY-Cox"/>
+                        <constraint firstAttribute="bottom" secondItem="FOQ-aQ-GiF" secondAttribute="bottom" id="fFo-8x-rw9"/>
+                        <constraint firstAttribute="trailing" secondItem="FOQ-aQ-GiF" secondAttribute="trailing" id="xad-WT-xAn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Pmd-6J-KQb" firstAttribute="leading" secondItem="U7y-7U-Yb9" secondAttribute="leading" id="WhA-V7-EOe"/>
+                <constraint firstAttribute="bottom" secondItem="Pmd-6J-KQb" secondAttribute="bottom" id="iaS-lk-ELg"/>
+                <constraint firstAttribute="trailing" secondItem="Pmd-6J-KQb" secondAttribute="trailing" id="nYi-I2-r9e"/>
+                <constraint firstItem="Pmd-6J-KQb" firstAttribute="top" secondItem="U7y-7U-Yb9" secondAttribute="top" id="zOz-Xk-Fyg"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
