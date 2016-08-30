@@ -198,8 +198,13 @@
 }
 
 - (void)toggleSection:(NSInteger)section { 
-    FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
-    [self tappedHeaderView:headerView];
+    CGRect sectionHeaderRect = [self rectForHeaderInSection:section];
+    [self scrollRectToVisible:sectionHeaderRect animated:NO];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
+        [self tappedHeaderView:headerView];
+    });
 }
 
 - (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
