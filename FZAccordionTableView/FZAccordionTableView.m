@@ -199,7 +199,7 @@
 
 - (void)toggleSection:(NSInteger)section { 
     FZAccordionTableViewHeaderView *headerView = (FZAccordionTableViewHeaderView *)[self headerViewForSection:section];
-    [self tappedHeaderView:headerView];
+    [self toggleSection:section withHeaderView:headerView];
 }
 
 - (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView {
@@ -259,44 +259,7 @@
     NSParameterAssert(sectionHeaderView);
     
     NSInteger section = [self sectionForHeaderView:sectionHeaderView];
-    
-    if (![self canInteractWithHeaderAtSection:section]) {
-        return;
-    }
-
-    // Keep at least one section open
-    if (self.keepOneSectionOpen) {
-        NSInteger countOfOpenSections = 0;
-        
-        for (NSInteger i = 0; i < self.numberOfSections; i++) {
-            if ([self.sectionInfos[i] isOpen]) {
-                countOfOpenSections++;
-            }
-        }
-
-        if (countOfOpenSections == 1 && [self isSectionOpen:section]) {
-            return;
-        }
-    }
-    
-    BOOL openSection = [self isSectionOpen:section];
-    
-    [self beginUpdates];
-    
-    // Insert/remove rows to simulate opening/closing of a header
-    if (!openSection) {
-        [self openSection:section withHeaderView:sectionHeaderView];
-    }
-    else { // The section is currently open
-        [self closeSection:section withHeaderView:sectionHeaderView];
-    }
-    
-    // Auto-collapse the rest of the opened sections
-    if (!self.allowMultipleSectionsOpen && !openSection) {
-        [self closeAllSectionsExcept:section];
-    }
-    
-    [self endUpdates];
+    [self toggleSection:section withHeaderView:sectionHeaderView];
 }
 
 - (void)closeAllSectionsExcept:(NSInteger)section {
@@ -331,7 +294,47 @@
 
 #pragma mark - Open / Closing
 
-- (void)openSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
+- (void)toggleSection:(NSInteger)section withHeaderView:(nullable FZAccordionTableViewHeaderView *)sectionHeaderView {
+    if (![self canInteractWithHeaderAtSection:section]) {
+        return;
+    }
+    
+    // Keep at least one section open
+    if (self.keepOneSectionOpen) {
+        NSInteger countOfOpenSections = 0;
+        
+        for (NSInteger i = 0; i < self.numberOfSections; i++) {
+            if ([self.sectionInfos[i] isOpen]) {
+                countOfOpenSections++;
+            }
+        }
+        
+        if (countOfOpenSections == 1 && [self isSectionOpen:section]) {
+            return;
+        }
+    }
+    
+    BOOL openSection = [self isSectionOpen:section];
+    
+    [self beginUpdates];
+    
+    // Insert/remove rows to simulate opening/closing of a header
+    if (!openSection) {
+        [self openSection:section withHeaderView:sectionHeaderView];
+    }
+    else { // The section is currently open
+        [self closeSection:section withHeaderView:sectionHeaderView];
+    }
+    
+    // Auto-collapse the rest of the opened sections
+    if (!self.allowMultipleSectionsOpen && !openSection) {
+        [self closeAllSectionsExcept:section];
+    }
+    
+    [self endUpdates];
+}
+
+- (void)openSection:(NSInteger)section withHeaderView:(nullable FZAccordionTableViewHeaderView *)sectionHeaderView {
     if (![self canInteractWithHeaderAtSection:section]) {
         return;
     }
@@ -370,11 +373,11 @@
     [self endUpdates];
 }
 
-- (void)closeSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
+- (void)closeSection:(NSInteger)section withHeaderView:(nullable FZAccordionTableViewHeaderView *)sectionHeaderView {
     [self closeSection:section withHeaderView:sectionHeaderView rowAnimation:UITableViewRowAnimationTop];
 }
 
-- (void)closeSection:(NSInteger)section withHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView rowAnimation:(UITableViewRowAnimation)rowAnimation {
+- (void)closeSection:(NSInteger)section withHeaderView:(nullable FZAccordionTableViewHeaderView *)sectionHeaderView rowAnimation:(UITableViewRowAnimation)rowAnimation {
     if (![self canInteractWithHeaderAtSection:section]) {
         return;
     }

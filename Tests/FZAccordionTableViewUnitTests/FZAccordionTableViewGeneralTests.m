@@ -54,17 +54,17 @@
     self.tableView.allowMultipleSectionsOpen = YES;
     self.tableView.keepOneSectionOpen = NO;
     
+    // Make sure UITableView methods get called / loaded
+    [self waitForHeaderViewInSection:0];
+    
     // First, open all of the sections
     for (NSInteger i = 0; i < [self.tableView numberOfSections];  i++) {
-        [self waitForHeaderViewInSection:i];
         [self.tableView toggleSection:i];
-        
         XCTAssert([self.tableView isSectionOpen:i], @"Section %d should be open.", (int)i);
     }
     
     // Second, close all of the section
     for (NSInteger i = 0; i < [self.tableView numberOfSections]; i++) {
-        [self waitForHeaderViewInSection:i];
         [self.tableView toggleSection:i];
         
         XCTAssert(![self.tableView isSectionOpen:i], @"Section %d should be closed.", (int)i);

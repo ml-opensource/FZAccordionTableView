@@ -122,27 +122,23 @@
 
 #pragma mark - <FZAccordionTableViewDelegate> -
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header {
     XCTAssertNotNil(tableView);
-    XCTAssertNotNil(header);
     self.willOpenSectionCalled = YES;
 }
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header {
     XCTAssertNotNil(tableView);
-    XCTAssertNotNil(header);
     self.didOpenSectionCalled = YES;
 }
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header {
     XCTAssertNotNil(tableView);
-    XCTAssertNotNil(header);
     self.willCloseSectionCalled = YES;
 }
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header {
+- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header {
     XCTAssertNotNil(tableView);
-    XCTAssertNotNil(header);
     self.didCloseSectionCalled = YES;
 }
 
