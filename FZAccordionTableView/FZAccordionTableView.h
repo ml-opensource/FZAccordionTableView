@@ -30,13 +30,6 @@
 
 @interface FZAccordionTableViewHeaderView : UITableViewHeaderFooterView
 
-/*!
- @desc  The section which this header view is part of.
- 
-        Deprecated. Use sectionForHeaderView: instead.
- */
-@property (nonatomic, readonly) NSInteger section DEPRECATED_MSG_ATTRIBUTE("Use sectionForHeaderView: instead.");
-
 @end
 
 @interface FZAccordionTableView : UITableView
@@ -76,15 +69,6 @@
 @property (strong, nonatomic, nullable) NSSet <NSNumber *> *initialOpenSections;
 
 /*!
- @desc  Defines which sections will always be open.
-        The headers of these sections will not call the
-        FZAccordionTableViewDelegate methods.
- 
-        Deprecated. Use tableView:canInteractWithHeaderAtSection: instead.
- */
-@property (strong, nonatomic, nullable) NSSet <NSNumber *> *sectionsAlwaysOpen DEPRECATED_MSG_ATTRIBUTE("Use tableView:canInteractWithHeaderAtSection: instead.");
-
-/*!
  @desc  Enables the fading of cells for the last two rows of the
         table. The fix can remove some of the animation clunkyness
         that happens at the last table view cells.
@@ -116,15 +100,19 @@
  
  @returns The section of the header view.
  */
-- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView * _Nonnull)headerView;
+- (NSInteger)sectionForHeaderView:(nonnull UITableViewHeaderFooterView *)headerView;
 
 @end
 
+/*!
+ `header` can be `nil` in some of the delegate methods if the header
+ is not visible.
+ */
 @protocol FZAccordionTableViewDelegate <NSObject>
 
 @optional
 
-/**
+/*!
  @desc  Implement to respond to which sections can be interacted with.
  
         If NO is returned for a section, the section can neither be opened or closed. 
@@ -134,12 +122,12 @@
  
         The default return value is YES.
  */
-- (BOOL)tableView:(FZAccordionTableView * _Nonnull)tableView canInteractWithHeaderAtSection:(NSInteger)section;
+- (BOOL)tableView:(nonnull FZAccordionTableView *)tableView canInteractWithHeaderAtSection:(NSInteger)section;
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(nonnull FZAccordionTableView *)tableView willOpenSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header;
+- (void)tableView:(nonnull FZAccordionTableView *)tableView didOpenSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header;
 
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
-- (void)tableView:(FZAccordionTableView * _Nonnull)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView * _Nonnull)header;
+- (void)tableView:(nonnull FZAccordionTableView *)tableView willCloseSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header;
+- (void)tableView:(nonnull FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(nullable UITableViewHeaderFooterView *)header;
 
 @end
