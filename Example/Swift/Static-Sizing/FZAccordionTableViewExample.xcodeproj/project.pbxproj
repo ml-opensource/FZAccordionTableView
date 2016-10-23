@@ -50,7 +50,7 @@
 				011F23071BC2CF76001769BF /* FZAccordionTableView.m */,
 			);
 			name = FZAccordionTableView;
-			path = ../../../FZAccordionTableView;
+			path = ../../../../FZAccordionTableView;
 			sourceTree = "<group>";
 		};
 		019D441B1BC2B62900104042 = {
