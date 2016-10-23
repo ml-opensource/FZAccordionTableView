@@ -9,41 +9,42 @@ The module is made to be very easy to use and no modifications are necessary to 
 
 ### FZAccordionTableView Class:
 
-~~~objective-c
-@interface FZAccordionTableView : UITableView
+```swift
+class FZAccordionTableView: UITableView {
 
-@property (nonatomic) BOOL allowMultipleSectionsOpen;
-@property (nonatomic) BOOL keepOneSectionOpen;
-@property (strong, nonatomic, nullable) NSSet <NSNumber *> *initialOpenSections;
-@property (nonatomic) BOOL enableAnimationFix;
+    var allowMultipleSectionsOpen: Bool
+    var keepOneSectionOpen: Bool
+    var initialOpenSections: Set<NSNumber>?
+    var enableAnimationFix: Bool
 
-- (BOOL)isSectionOpen:(NSInteger)section;
-- (void)toggleSection:(NSInteger)section;
-- (NSInteger)sectionForHeaderView:(UITableViewHeaderFooterView *)headerView;
+    func isSectionOpen(_ section: Int) -> Bool
+    func toggleSection(_ section: Int)
+    func section(forHeaderView headerView: UITableViewHeaderFooterView) -> Int
 
-@end
-~~~
+}
+```
 
 ### FZAccordionTableViewHeaderView Class:
-~~~objective-c
-@interface FZAccordionTableViewHeaderView : UITableViewHeaderFooterView
-@end
-~~~ 
+```swift
+class FZAccordionTableViewHeaderView : UITableViewHeaderFooterView { 
+
+}
+```
 
 ### FZAccordionTableViewDelegate Protocol:
-~~~objective-c
-@protocol FZAccordionTableViewDelegate <NSObject>
+```swift
+protocol FZAccordionTableViewDelegate: NSObjectProtocol {
 
-- (BOOL)tableView:(FZAccordionTableView *)tableView canInteractWithHeaderAtSection:(NSInteger)section;
+    func tableView(_ tableView: FZAccordionTableView, canInteractWithHeaderAtSection section: Int) -> Bool
 
-- (void)tableView:(FZAccordionTableView *)tableView willOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didOpenSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- 
-- (void)tableView:(FZAccordionTableView *)tableView willCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
-- (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header;
+    func tableView(_ tableView: FZAccordionTableView, willOpenSection section: Int, withHeader header: UITableViewHeaderFooterView?)
+    func tableView(_ tableView: FZAccordionTableView, didOpenSection section: Int, withHeader header: UITableViewHeaderFooterView?)
 
-@end
-~~~
+    func tableView(_ tableView: FZAccordionTableView, willCloseSection section: Int, withHeader header: UITableViewHeaderFooterView?)
+    func tableView(_ tableView: FZAccordionTableView, didCloseSection section: Int, withHeader header: UITableViewHeaderFooterView?)
+    
+}
+```
 
 ## How To Use?
 ### Steps:
@@ -51,9 +52,6 @@ The module is made to be very easy to use and no modifications are necessary to 
 1. Add to Podfile: `pod 'FZAccordionTableView', '~> 0.2.3'`
 2. Subclass your `UITableView` with `FZAccordionTableView`
 3. Subclass your `UITableViewHeaderFooterView` with `FZAccordionTableViewHeaderView`
-
-## Swift Support
-FZAccordionTableView works with Swift! Check out the Swift Example in the "Example" folder to see FZAccordionTableView implemented in a Swift project.
 
 ## Example
 ![](Images/First_Example.gif) ![](Images/Second_Example.gif)
