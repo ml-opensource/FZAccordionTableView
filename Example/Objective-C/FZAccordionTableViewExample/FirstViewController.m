@@ -88,5 +88,10 @@ static NSString *const kTableViewCellReuseIdentifier = @"TableViewCellReuseIdent
 - (void)tableView:(FZAccordionTableView *)tableView didCloseSection:(NSInteger)section withHeader:(UITableViewHeaderFooterView *)header {
     
 }
-
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    NSLog(@"Did end dragging");
+}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+     NSLog(@"Did end decelearting");
+}
 @end

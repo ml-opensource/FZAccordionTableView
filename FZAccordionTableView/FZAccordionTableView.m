@@ -500,5 +500,16 @@
     
     return headerView;
 }
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if([self.subclassDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]){
+         [self.subclassDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if([self.subclassDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]){
+         [self.subclassDelegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
 
 @end
