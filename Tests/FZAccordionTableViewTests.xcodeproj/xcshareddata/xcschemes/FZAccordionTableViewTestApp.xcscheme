@@ -20,48 +20,15 @@
                ReferencedContainer = "container:FZAccordionTableViewTests.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "01D1F34A1B24D94A007B97BD"
-               BuildableName = "FZAccordionTableViewExampleTests.xctest"
-               BlueprintName = "FZAccordionTableViewExampleTests"
-               ReferencedContainer = "container:FZAccordionTableViewTests.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "01D1F34A1B24D94A007B97BD"
-               BuildableName = "FZAccordionTableViewExampleTests.xctest"
-               BlueprintName = "FZAccordionTableViewExampleTests"
-               ReferencedContainer = "container:FZAccordionTableViewTests.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "014477181CCB0BB1009F301D"
-               BuildableName = "FZAccordionTableViewExampleUITests.xctest"
-               BlueprintName = "FZAccordionTableViewExampleUITests"
-               ReferencedContainer = "container:FZAccordionTableViewTests.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -99,6 +66,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
