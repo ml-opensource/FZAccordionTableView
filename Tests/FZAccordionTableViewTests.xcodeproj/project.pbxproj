@@ -23,6 +23,7 @@
 		01D1F35E1B24D9B2007B97BD /* FZAccordionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F35D1B24D9B2007B97BD /* FZAccordionTableView.m */; };
 		01D1F3661B24DD61007B97BD /* AccordionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D1F3651B24DD61007B97BD /* AccordionHeaderView.m */; };
 		01D1F3681B24DD86007B97BD /* AccordionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D1F3671B24DD86007B97BD /* AccordionHeaderView.xib */; };
+		01EAD966204C85E500B5F188 /* FZAccordionTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156F1431CCD219800E0530C /* FZAccordionTableViewUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EAD966204C85E500B5F188 /* FZAccordionTableViewUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +421,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = FZAccordionTableViewUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FZAccordionTableViewTests.app/FZAccordionTableViewTests";
@@ -433,7 +435,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = FZAccordionTableViewUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kg.FZAccordionTableViewUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FZAccordionTableViewTests.app/FZAccordionTableViewTests";
