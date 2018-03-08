@@ -30,6 +30,13 @@
 
 @interface FZAccordionTableViewHeaderView : UITableViewHeaderFooterView
 
+/*!
+ @desc Contains the section number for easier getting it.
+
+ The default value is NSNotFound.
+ */
+@property (nonatomic) NSInteger sectionNumber;
+
 @end
 
 @interface FZAccordionTableView : UITableView

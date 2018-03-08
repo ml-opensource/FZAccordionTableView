@@ -62,6 +62,7 @@
 }
 
 - (void)singleInit {
+    _sectionNumber = NSNotFound;
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchedHeaderView:)]];
 }
 
@@ -257,8 +258,11 @@
 
 - (void)tappedHeaderView:(FZAccordionTableViewHeaderView *)sectionHeaderView {
     NSParameterAssert(sectionHeaderView);
-    
-    NSInteger section = [self sectionForHeaderView:sectionHeaderView];
+
+    NSInteger section = sectionHeaderView.sectionNumber;
+    if (section == NSNotFound) {
+        section = [self sectionForHeaderView:sectionHeaderView];
+    }
     [self toggleSection:section withHeaderView:sectionHeaderView];
 }
 
@@ -496,6 +500,7 @@
         if ([headerView isKindOfClass:[FZAccordionTableViewHeaderView class]]) {
             headerView.delegate = self.accordionTableView;
         }
+        headerView.sectionNumber = section;
     }
     
     return headerView;
